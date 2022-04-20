@@ -45,13 +45,6 @@ class Event(models.Model):
         return self.name
 
 
-### DayEvent Model 
-class DayEvent(models.Model): 
-    event = models.OneToOneField(Event, on_delete=models.CASCADE)
-    day = models.PositiveIntegerField()
-
-
-
 ### Schedule Model 
 class Schedule(models.Model):
     name = models.CharField(max_length=250)
@@ -59,7 +52,12 @@ class Schedule(models.Model):
     date_out = models.DateField()
     numdays = models.PositiveIntegerField()
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    dayevents = models.ForeignKey(DayEvent, on_delete=models.CASCADE)
 
     def __str__(self): 
         return self.name
+
+### DayEvent Model 
+class DayEvent(models.Model): 
+    event = models.OneToOneField(Event, on_delete=models.CASCADE)
+    day = models.PositiveIntegerField()
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
