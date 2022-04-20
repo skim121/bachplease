@@ -1,6 +1,6 @@
 # Bach Please
 
-Bachelor/Bachelorette party planner's best friend 
+Bachelor/Bachelorette party planner's best friend - curate the best weekend plan for the best bride and groom 
 
 
 ## Table of Contents
@@ -18,7 +18,7 @@ Bachelor/Bachelorette party planner's best friend
 
 
 ## Get Started
-See deployed site here: [Heroku Link](https://lifetimepaws.herokuapp.com/)
+See deployed site here: [Heroku Link]()
 
 ## Brainstorming
 
