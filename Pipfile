@@ -9,6 +9,9 @@ psycopg2 = "*"
 django-bootstrap-v5 = "*"
 django-ckeditor = "*"
 pillow = "*"
+social-auth-core = "*"
+python-social-auth = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 

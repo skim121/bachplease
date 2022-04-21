@@ -7,5 +7,15 @@ Bach Please
 
 {% block content %}
 <h1> HOME </h1>
+
+{% if user.is_authenticated %}
+<h3> Welcome, {{ user.first_name}}!</h3>
+<a href="/logout"> Log Out</a>
+{% else %}
+<a href = "{% url 'social:begin' 'google-oauth2' %}"> Sign In with Google</a>
+{% endif %}
+
+<a href="/admin">Admin</a>
+
 {% endblock %}
 
