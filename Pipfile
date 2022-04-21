@@ -12,6 +12,8 @@ pillow = "*"
 social-auth-core = "*"
 python-social-auth = "*"
 social-auth-app-django = "*"
+django-dotenv = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
