@@ -10,6 +10,7 @@ from .models import Event, City, Tag, Schedule, DayEvent
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator 
 # from django.db.models import Q
 # import django_filters 
 
@@ -76,6 +77,7 @@ def ScheduleDetail(request,id):
     events = Event.objects.filter(user=request.user, city=schedule.city)
     return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events})
 
+@method_decorator(login_required, name='dispatch')
 class ScheduleCreate(CreateView):
     model = Schedule
     fields= ['name','date_in','date_out','numdays', 'city']
@@ -85,3 +87,12 @@ class ScheduleCreate(CreateView):
         self.object.user= self.request.user
         self.object.save()
         return HttpResponseRedirect('/user/'+str(self.object.user.id))
+
+
+@method_decorator(login_required, name='dispatch')
+class ScheduleDelete(DeleteView): 
+    model = Schedule
+    template_name = "schedule_delete_confirm.html"
+    def get_success_url(self):
+        return reverse('profile', kwargs={'id': self.object.user.id}) 
+

@@ -12,5 +12,5 @@ urlpatterns = [
     path('fav/<int:id>/', views.fav_add, name="fav_add"),
     path('schedule/<int:id>/', views.ScheduleDetail, name="schedule_detail"),
     path('schedule/create/', views.ScheduleCreate.as_view(), name="schedule_create"),
-
+    path('schedule/<int:pk>/delete/', views.ScheduleDelete.as_view(), name="schedule_delete"),
 ]
