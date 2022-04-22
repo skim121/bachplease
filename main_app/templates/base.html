@@ -19,6 +19,19 @@
 </head>
 
 <body class="body">
+    <header>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/austin">Austin</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' user.id %}"> Profile </a></li>
+            {% else %}
+            <a href = "{% url 'social:begin' 'google-oauth2' %}"> Sign In with Google</a>
+            {% endif %}
+        </ul>
+    </header>
+
     {% block content %}
     {% endblock %}
 
@@ -27,7 +40,7 @@
     </div>
 
 
-
+    
 
 
 <!-- Bootstrap JS -->

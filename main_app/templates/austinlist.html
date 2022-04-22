@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please | Austin
+{% endblock %}
+
+
+{% block content %}
+    {% for event in events %}
+    <a href="{% url 'event_detail' event.pk %}">
+        <p>{{event.name}}</p>
+    </a>
+    {% endfor %}  
+{% endblock %}

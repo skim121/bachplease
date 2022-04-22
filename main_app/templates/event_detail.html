@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>{{event.name}}</h1>
+    <p> {{event.budget}}</p>
+    <p> {{event.capacity}}</p>
+    <p> {{event.city}}</p>
+    <p> {{event.neighborhood}}</p>
+    <p> {{event.website}}</p>
+    {{event.description|safe}}
+    
+    {% if request.user.is_authenticated %}
+        {% if is_fav %}
+        <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Remove from favorites </button></a>  
+        {% else %}
+    <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Add to favorites </button></a> 
+        {% endif %}
+    {% else %}
+    <a href="/login"><button class="btn btn-outline-primary"> Watch Me </button></a>
+    {% endif %}
+
+
+  
+
+
+{% endblock %}

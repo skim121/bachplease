@@ -1,6 +1,10 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.contrib.auth import get_user_model
 # Create your models here.
+
+
+User = get_user_model()
 
 ### City Model
 CITY_CHOICES = (
@@ -40,7 +44,7 @@ class Event(models.Model):
     image = models.ImageField(null = True, blank = True, upload_to="images/")
     website = models.CharField(max_length = 250, blank=True, null = True)
     tag = models.ManyToManyField(Tag, default=None, blank=True, related_name="event") 
-
+    user = models.ManyToManyField(User, default=None, blank=True)
     def __str__(self): 
         return self.name
 
@@ -52,7 +56,8 @@ class Schedule(models.Model):
     date_out = models.DateField()
     numdays = models.PositiveIntegerField()
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     def __str__(self): 
         return self.name
 

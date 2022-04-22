@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Profile: {{user.first_name}} {{user.last_name}}</h1>
+
+{% for event in events %}
+    <a href="{% url 'event_detail' event.pk %}">
+        <p>{{event.name}}</p>
+    </a>
+{% endfor %}  
+
+{% for schedule in schedules %}
+    <a href="{% url 'schedule_detail' schedule.pk %}">
+        <p>{{schedule.name}}</p>
+    </a>
+{% endfor %}  
+
+
+
+{% endblock %}

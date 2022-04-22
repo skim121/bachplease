@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>{{schedule.name}}</h1>
+    <p>{{schedule.date_in}}</p>
+    <p>{{schedule.date_out}}</p>
+    <p>{{schedule.numdays}}</p>
+    <p>{{schedule.city}}</p>
+
+
+
+
+{% endblock %}
