@@ -14,7 +14,11 @@ Bach Please
     <p>{{schedule.numdays}}</p>
     <p>{{schedule.city}}</p>
 
-
+{% for event in events %}
+    <a href="{% url 'event_detail' event.pk %}">
+        <p>{{event.name}}</p>
+    </a>
+{% endfor %}  
 
 
 {% endblock %}

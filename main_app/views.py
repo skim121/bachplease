@@ -10,7 +10,8 @@ from .models import Event, City, Tag, Schedule, DayEvent
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
-
+# from django.db.models import Q
+# import django_filters 
 
 class Home(TemplateView): 
     template_name = "home.html"
@@ -20,11 +21,29 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 class AustinList(TemplateView): 
-    template_name = "austinlist.html"
+    template_name = "citylist.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["events"] = Event.objects.filter(city=1)
+        context["header"] = f"Austin"
         return context
+
+class NashvilleList(TemplateView): 
+    template_name = "citylist.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["events"] = Event.objects.filter(city=2)
+        context["header"] = f"Nashville"
+        return context
+
+class MiamiList(TemplateView): 
+    template_name = "citylist.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["events"] = Event.objects.filter(city=3)
+        context["header"] = f"Miami"
+        return context
+
 
 def EventDetail(request,id): 
     event = get_object_or_404(Event, id=id)
@@ -54,4 +73,15 @@ def schedule(request, id):
 
 def ScheduleDetail(request,id): 
     schedule = get_object_or_404(Schedule, id=id)
-    return render(request, 'schedule_detail.html', {'schedule': schedule})
+    events = Event.objects.filter(user=request.user, city=schedule.city)
+    return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events})
+
+class ScheduleCreate(CreateView):
+    model = Schedule
+    fields= ['name','date_in','date_out','numdays', 'city']
+    template_name = 'schedule_create.html'
+    def form_valid(self, form): 
+        self.object = form.save(commit=False)
+        self.object.user= self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/user/'+str(self.object.user.id))
