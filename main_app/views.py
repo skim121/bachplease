@@ -74,8 +74,9 @@ def schedule(request, id):
 
 def ScheduleDetail(request,id): 
     schedule = get_object_or_404(Schedule, id=id)
+    range = schedule.numdays-1
     events = Event.objects.filter(user=request.user, city=schedule.city)
-    return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events})
+    return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events, 'range': range})
 
 @method_decorator(login_required, name='dispatch')
 class ScheduleCreate(CreateView):
