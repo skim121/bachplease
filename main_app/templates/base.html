@@ -23,7 +23,7 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/admin">Admin</a></li>
-            <li><a href="/austin">Austin</a></li>
+        
             {% if user.is_authenticated %}
             <li><a href="{% url 'profile' user.id %}"> Profile </a></li>
             {% else %}

@@ -10,11 +10,7 @@ Bach Please
 
 <h1>Profile: {{user.first_name}} {{user.last_name}}</h1>
 
-{% for event in events %}
-    <a href="{% url 'event_detail' event.pk %}">
-        <p>{{event.name}}</p>
-    </a>
-{% endfor %}  
+<a href="{% url 'schedule_create' %}">Add New Schedule</a>
 
 {% for schedule in schedules %}
     <a href="{% url 'schedule_detail' schedule.pk %}">
