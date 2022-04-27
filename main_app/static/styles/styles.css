@@ -5,3 +5,17 @@
 body{
     /* background: var(--white) !important; */
 }
+
+#dayborder{
+    border: 2px solid black !important;
+    width: 60%;
+}
+
+#dayeventatag{
+    text-decoration: none !important;
+}
+
+#dayeventptag{
+    background: lightblue !important;
+
+}

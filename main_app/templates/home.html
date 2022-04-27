@@ -15,6 +15,17 @@ Bach Please
 <a href = "{% url 'social:begin' 'google-oauth2' %}"> Sign In with Google</a>
 {% endif %}
 
+
+</br>
+<h1> Start Planning </h1> 
+<form method="get" action="{% url 'filter_view' %}">
+     {% csrf_token %} 
+     {{ event_filter.form }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</br>
+
 <li><a href="/austin">Austin</a></li>
 <li><a href="/nashville">Nashville</a></li>
 <li><a href="/miami">Miami</a></li>

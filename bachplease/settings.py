@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'main_app',
     'bootstrap5',
     'ckeditor',
-    'social_django'
+    'social_django',
+    'django_filters'
 ]
 
 MIDDLEWARE = [

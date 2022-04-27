@@ -11,11 +11,30 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
+from .filters import EventFilter
 # from django.db.models import Q
 # import django_filters 
 
-class Home(TemplateView): 
-    template_name = "home.html"
+def Home(request): 
+    tags = Tag.objects.all()
+    events = Event.objects.all()
+    event_filter = EventFilter(request.GET, queryset = events)
+    return render(request, 'home.html', {'tags': tags, 'event_filter': event_filter})
+
+#
+
+def FilterView(request): 
+    city = request.GET['city'][0]
+    tagresult = request.GET.getlist('tag')
+    # events = Event.objects.filter(city.name==city)
+    # tagfilter = request.GET.get('tagsearch') 
+    # if tagfilter != '' and tagfilter is not None:
+    #     events = events.filter(tag__icontains)
+
+    return render(request, 'citylist2.html')
+
+
+
 
 def logout_view(request):
     logout(request)
@@ -74,9 +93,11 @@ def schedule(request, id):
 
 def ScheduleDetail(request,id): 
     schedule = get_object_or_404(Schedule, id=id)
-    range = schedule.numdays-1
+    # range = schedule.numdays
+    looptimes = range(1, schedule.numdays+1)
     events = Event.objects.filter(user=request.user, city=schedule.city)
-    return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events, 'range': range})
+    dayevents= DayEvent.objects.filter(schedule=schedule.id)
+    return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events, 'looptimes': looptimes, 'dayevents': dayevents})
 
 @method_decorator(login_required, name='dispatch')
 class ScheduleCreate(CreateView):
@@ -96,4 +117,11 @@ class ScheduleDelete(DeleteView):
     template_name = "schedule_delete_confirm.html"
     def get_success_url(self):
         return reverse('profile', kwargs={'id': self.object.user.id}) 
+
+class DayEventCreate(CreateView): 
+    model = DayEvent
+    fields = ['event', 'day', 'schedule']
+    template_name = 'day_event_create.html'
+    success_url ='/'
+
 
