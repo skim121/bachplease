@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please | {{header}}
+{% endblock %}
+
+
+{% block content %}
+<h1>CITY LIST Events in {{header}}</h1>
+
+
+
+
+    <h3>List </h3>
+    {% for event in events %}
+    <a href="{% url 'event_detail' event.pk %}">
+        <p>{{event.name}}</p>
+    </a>
+    {% endfor %}  
+{% endblock %}

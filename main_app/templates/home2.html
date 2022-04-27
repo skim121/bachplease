@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please
+{% endblock %}
+
+{% block content %}
+<h1> HOME </h1>
+
+{% if user.is_authenticated %}
+<h3> Welcome, {{ user.first_name}}!</h3>
+<a href="/logout"> Log Out</a>
+{% else %}
+<a href = "{% url 'social:begin' 'google-oauth2' %}"> Sign In with Google</a>
+{% endif %}
+
+
+</br>
+<h1> Start Planning </h1> 
+<form method="get" action="{% url 'filter_view' %}">
+     {% csrf_token %} 
+    <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="citysearch">
+            <option selected>Choose a city</option>
+            <option value="Austin">Austin</option>
+            <option value="Nashville">Nashville</option>
+            <option value="Miami">Miami</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <h3> Tags </h3>
+      {% for tag in tags %}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck" name="tagsearch">
+        <label class="form-check-label" for="defaultCheck">
+          {{ tag.name }}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</br>
+
+<li><a href="/austin">Austin</a></li>
+<li><a href="/nashville">Nashville</a></li>
+<li><a href="/miami">Miami</a></li>
+
+
+
+{% endblock %}
+

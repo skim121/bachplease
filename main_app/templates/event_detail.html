@@ -14,6 +14,10 @@ Bach Please
     <p> {{event.city}}</p>
     <p> {{event.neighborhood}}</p>
     <p> {{event.website}}</p>
+    {% for tag in event.tag.all %}
+    <p> {{tag.name}}</p>
+    {% endfor %}
+
     {{event.description|safe}}
     
     {% if request.user.is_authenticated %}
@@ -28,6 +32,4 @@ Bach Please
 
 
   
-
-
 {% endblock %}
