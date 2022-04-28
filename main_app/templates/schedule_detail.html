@@ -17,12 +17,12 @@ Bach Please
     
     {% for i in looptimes %}
     <div id="dayborder">
+        <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
         <p> Day {{i}} </p> 
-        <a href="/dayevent/create">+</a>
         {% for d in dayevents %}
         {% if d.day == i %}
-        <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-            <p id="dayeventptag">{{d.event}}</p>
+        <a href = "{% url 'event_detail' d.event.pk %}" id="dayeventatag">
+            <p id="dayeventptag">{{d.event_set}}</p>
         </a>
         {% endif %}
         {% endfor %}

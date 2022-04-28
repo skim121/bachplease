@@ -12,6 +12,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
 from .filters import EventFilter, CityFilter
+from .forms import DayEventForm 
 # from django.db.models import Q
 # import django_filters 
 
@@ -31,14 +32,7 @@ def FilterView(request):
     events = Event.objects.filter(tag__in=tagname, city=header)
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
-
-    # events = Event.objects.filter(city.name==city)
-    # tagfilter = request.GET.get('tagsearch') 
-    # if tagfilter != '' and tagfilter is not None:
-    #     events = events.filter(tag__icontains)
-
     return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events, 'city_filter': city_filter})
-
 
 
 def logout_view(request):
@@ -54,16 +48,6 @@ def AustinList(request):
     # header = request.GET.get('city__name')
     return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
 
-
-# class AustinList(TemplateView): 
-#     template_name = "citylist.html"
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         events = Event.objects.filter(city=1)
-#         context["event_filter"] = EventFilter(request.GET, queryset = events)
-#         context["events"] = Event.objects.filter(city=1)
-#         context["header"] = f"Austin"
-#         return context
 
 class NashvilleList(TemplateView): 
     template_name = "citylist.html"
@@ -113,7 +97,8 @@ def ScheduleDetail(request,id):
     # range = schedule.numdays
     looptimes = range(1, schedule.numdays+1)
     events = Event.objects.filter(user=request.user, city=schedule.city)
-    dayevents= DayEvent.objects.filter(schedule=schedule.id)
+    dayevents = DayEvent.objects.filter(schedule=schedule.id)
+    print(dayevents)
     return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events, 'looptimes': looptimes, 'dayevents': dayevents})
 
 @method_decorator(login_required, name='dispatch')
@@ -135,10 +120,26 @@ class ScheduleDelete(DeleteView):
     def get_success_url(self):
         return reverse('profile', kwargs={'id': self.object.user.id}) 
 
-class DayEventCreate(CreateView): 
-    model = DayEvent
-    fields = ['event', 'day', 'schedule']
-    template_name = 'day_event_create.html'
-    success_url ='/'
+# class DayEventCreate(CreateView): 
+#     model = DayEvent
+#     form_class = DayEventForm
+#     template_name = 'day_event_create.html'
+#     # success_url ='/'
+#     def get(self,request):
+#         print(request.GET)
+#         return HttpResponseRedirect('/')
+
+def DayEventCreate(request, schedule_id):
+    schedule = get_object_or_404(Schedule, id=schedule_id)
+    eventfilter = Event.objects.filter(city=schedule.city)
+    if request.method == 'POST': 
+        form = DayEventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else: 
+        form = DayEventForm(initial={'schedule':schedule_id})
+        form.fields['event'].queryset = eventfilter
+    return reverse(request, 'day_event_create.html', {'form': form})
 
 

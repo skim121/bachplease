@@ -63,6 +63,6 @@ class Schedule(models.Model):
 
 ### DayEvent Model 
 class DayEvent(models.Model): 
-    event = models.OneToOneField(Event, on_delete=models.CASCADE)
+    event = models.ManyToManyField(Event, related_name="dayevent")
     day = models.PositiveIntegerField()
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
