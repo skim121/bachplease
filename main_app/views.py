@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
-from .filters import EventFilter
+from .filters import EventFilter, CityFilter
 # from django.db.models import Q
 # import django_filters 
 
@@ -19,20 +19,25 @@ def Home(request):
     tags = Tag.objects.all()
     events = Event.objects.all()
     event_filter = EventFilter(request.GET, queryset = events)
-    return render(request, 'home.html', {'tags': tags, 'event_filter': event_filter})
+    events = event_filter.qs
+    return render(request, 'home.html', {'event_filter': event_filter, 'events':events})
 
-#
 
 def FilterView(request): 
-    city = request.GET['city'][0]
-    tagresult = request.GET.getlist('tag')
+    header = request.GET['city']
+    tagresults = request.GET.getlist('tag')
+    cityname = City.objects.filter(id=header).values_list('name', flat=True)
+    tagname = Tag.objects.filter(id__in=tagresults)
+    events = Event.objects.filter(tag__in=tagname, city=header)
+    city_filter = CityFilter(request.GET, queryset = events)
+    events = city_filter.qs
+
     # events = Event.objects.filter(city.name==city)
     # tagfilter = request.GET.get('tagsearch') 
     # if tagfilter != '' and tagfilter is not None:
     #     events = events.filter(tag__icontains)
 
-    return render(request, 'citylist2.html')
-
+    return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events, 'city_filter': city_filter})
 
 
 
@@ -40,13 +45,25 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-class AustinList(TemplateView): 
-    template_name = "citylist.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["events"] = Event.objects.filter(city=1)
-        context["header"] = f"Austin"
-        return context
+def AustinList(request): 
+    events = Event.objects.filter(city=1)
+    header = ["Austin"]
+    city_filter = CityFilter(request.GET, queryset = events)
+    events = city_filter.qs
+    # events = event_filter.qs
+    # header = request.GET.get('city__name')
+    return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
+
+
+# class AustinList(TemplateView): 
+#     template_name = "citylist.html"
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         events = Event.objects.filter(city=1)
+#         context["event_filter"] = EventFilter(request.GET, queryset = events)
+#         context["events"] = Event.objects.filter(city=1)
+#         context["header"] = f"Austin"
+#         return context
 
 class NashvilleList(TemplateView): 
     template_name = "citylist.html"

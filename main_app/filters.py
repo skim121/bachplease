@@ -10,4 +10,17 @@ class EventFilter(django_filters.FilterSet):
     class Meta: 
         model = Event
         fields = ['city', 'tag']
-     
+
+class CityFilter(django_filters.FilterSet): 
+    budget = django_filters.MultipleChoiceFilter(choices=(
+            ('Free', 'Free'),
+            ('$', '$'),
+            ('$$', '$$'),
+            ('$$$', '$$$'),
+            ('$$$$','$$$$'),
+            ))
+    tag = django_filters.ModelMultipleChoiceFilter(queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple)
+
+    class Meta: 
+        model = Event
+        fields = ['city', 'budget', 'tag']
