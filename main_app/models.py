@@ -40,7 +40,7 @@ class Event(models.Model):
     description = RichTextField(blank=True, null=True)
     capacity = models.CharField(max_length = 250, blank=True, null = True)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    neightborhood = models.CharField(max_length = 250, blank=True, null = True)
+    neighborhood = models.CharField(max_length = 250, blank=True, null = True)
     image = models.ImageField(null = True, blank = True, upload_to="images/")
     website = models.CharField(max_length = 250, blank=True, null = True)
     tag = models.ManyToManyField(Tag, default=None, blank=True, related_name="event") 
