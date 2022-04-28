@@ -29,15 +29,15 @@ def FilterView(request):
     cityname = City.objects.filter(id=header).values_list('name', flat=True)
     tagname = Tag.objects.filter(id__in=tagresults)
     events = Event.objects.filter(tag__in=tagname, city=header)
-    print(cityname)
+    city_filter = CityFilter(request.GET, queryset = events)
+    events = city_filter.qs
 
     # events = Event.objects.filter(city.name==city)
     # tagfilter = request.GET.get('tagsearch') 
     # if tagfilter != '' and tagfilter is not None:
     #     events = events.filter(tag__icontains)
 
-    return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events})
-
+    return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events, 'city_filter': city_filter})
 
 
 

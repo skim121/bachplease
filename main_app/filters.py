@@ -23,4 +23,4 @@ class CityFilter(django_filters.FilterSet):
 
     class Meta: 
         model = Event
-        fields = ['budget', 'tag']
+        fields = ['city', 'budget', 'tag']
