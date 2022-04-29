@@ -25,7 +25,8 @@ def Home(request):
     events = event_filter.qs
     return render(request, 'home.html', {'event_filter': event_filter, 'events':events})
 
-
+### FILTERS
+# Filtering function from home to another page - grabs data from form on homepage and filters based on results
 def FilterView(request): 
     header = request.GET['city']
     tagresults = request.GET.getlist('tag')
@@ -36,20 +37,16 @@ def FilterView(request):
     events = city_filter.qs
     return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events, 'city_filter': city_filter})
 
-
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/')
-
+# Pre-made search filter to Austin 
 def AustinList(request): 
     events = Event.objects.filter(city=1)
     header = ["Austin"]
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
-    # events = event_filter.qs
-    # header = request.GET.get('city__name')
     return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
 
+
+# Pre-made search filter to Nashville
 def NashvilleList(request): 
     events = Event.objects.filter(city=2)
     header = ["Nashville"]
@@ -57,6 +54,7 @@ def NashvilleList(request):
     events = city_filter.qs
     return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
 
+# Pre-made search filter to Miami
 def MiamiList(request): 
     events = Event.objects.filter(city=3)
     header = ["Miami"]
@@ -64,6 +62,7 @@ def MiamiList(request):
     events = city_filter.qs
     return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
 
+### EVENTS
 def EventDetail(request, id): 
     event = get_object_or_404(Event, id=id)
     events = Event.objects.filter(user=request.user.id)
@@ -72,12 +71,22 @@ def EventDetail(request, id):
         is_fav = True
     return render(request, 'event_detail.html', {'event': event, 'is_fav': is_fav})
 
+### PROFILE 
+# Authentication 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+# Profile page
+@login_required
 def profile(request, id): 
     user = User.objects.get(id=id)
     events = Event.objects.filter(user=request.user)
     schedules = Schedule.objects.filter(user=request.user)
     return render(request, 'profile.html', {'user': user, 'events': events, 'schedules': schedules, id: request.user.id})
 
+# Add to favorites funcion
+@login_required
 def fav_add(request, id): 
     event = get_object_or_404(Event, id=id)
     if event.user.filter(id=request.user.id).exists():
@@ -86,10 +95,8 @@ def fav_add(request, id):
         event.user.add(request.user)
     return HttpResponseRedirect('/event/'+str(event.id))
 
-def schedule(request, id):
-    schedule = Schedule.objects.filter(id=id)
-    return render(request, 'schedule.html', {'schedule': schedule, 'id':schedule.id})
-
+### SCHEDULES 
+@login_required
 def ScheduleDetail(request,id): 
     schedule = get_object_or_404(Schedule, id=id)
     print(schedule.id)
@@ -110,33 +117,12 @@ class ScheduleCreate(CreateView):
         self.object.save()
         return HttpResponseRedirect('/user/'+str(self.object.user.id))
 
-# class ScheduleCreate(CreateView):
-#     model = Schedule
-#     fields= ['name','date_in','date_out','numdays', 'city']
-#     template_name = 'schedule_create.html'
-#     def form_valid(self, form): 
-#         self.object = form.save(commit=False)
-#         self.object.user= self.request.user
-#         self.object.save()
-#         return HttpResponseRedirect('/user/'+str(self.object.user.id))
-
-
 @method_decorator(login_required, name='dispatch')
 class ScheduleDelete(DeleteView): 
     model = Schedule
     template_name = "schedule_delete_confirm.html"
     def get_success_url(self):
         return reverse('profile', kwargs={'id': self.object.user.id}) 
-
-
-# class DayEventCreate(CreateView): 
-#     model = DayEvent
-#     form_class = DayEventForm
-#     template_name = 'day_event_create.html'
-#     # success_url ='/'
-#     def get(self,request):
-#         print(request.GET)
-#         return HttpResponseRedirect('/')
 
 @method_decorator(login_required, name='dispatch')
 class ScheduleUpdate(UpdateView): 
@@ -149,7 +135,7 @@ class ScheduleUpdate(UpdateView):
         self.object.save()
         return HttpResponseRedirect('/schedule/'+str(self.object.id))
 
-
+### DAYEVENTS 
 @login_required
 def DayEventCreate(request, id):
     schedule = get_object_or_404(Schedule, id=id)

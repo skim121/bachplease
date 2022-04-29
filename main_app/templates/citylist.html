@@ -11,7 +11,7 @@ Bach Please | {{header}}
 
 </br>
 <h1> Start Planning </h1> 
-<form method="get" action="">
+<form method="get" action="{% url 'filter_view' %}">
      {% csrf_token %} 
      {{ city_filter.form }}
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -23,16 +23,14 @@ Bach Please | {{header}}
 <h1>Events in {{head}}</h1>
 {% endfor %}
 
-{% for tag in tags %}
-<h1>{{tag}}</h1>
-{% endfor %}
-
     <h3>List </h3>
     {% for event in events %}
-    <img src = "https://res.cloudinary.com/skim121/image/upload/c_fill,g_face,h_300,w_300/{{event.image}}" alt="{{event.name}} image">
+
     <a href="{% url 'event_detail' event.pk %}">
+        <h3>{{event.name}}</h3>
         <p>{{event.description|safe}}</p>
         <p>{{event.neighborhood}}</p>
+        <img src = "https://res.cloudinary.com/skim121/image/upload/c_fill,g_face,h_300,w_300/{{event.image}}" alt="{{event.name}} image">
     <hr>
     </a>
    
