@@ -16,6 +16,11 @@ django-dotenv = "*"
 python-dotenv = "*"
 django-filter = "*"
 django-cloudinary-storage = "*"
+gunicorn = "*"
+django-heroku = "*"
+django-cors-headers = "*"
+dj-database-url = "*"
+whitenoise = "*"
 
 [dev-packages]
 
