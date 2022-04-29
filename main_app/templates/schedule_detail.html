@@ -20,21 +20,16 @@ Bach Please
         <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
         <p> Day {{i}} </p> 
         {% for d in dayevents %}
-        {% if d.day == i %}
-        {% for e in d.event.all %}
-       <p> {{ e.id }} </p>
-       
-        <a href = "{% url 'event_detail' e.id %}" id="dayeventatag">
-            <p id="dayeventptag">{{e.name}}</p>
-        </a>
+            {% if d.day == i %}
+            {% for e in d.event.all %}       
+            <a href = "{% url 'event_detail' e.id %}" id="dayeventatag">
+                <p id="dayeventptag">{{e.name}}</p>
+            </a>
+            {% endfor %}
+            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
+            {% endif %}
         {% endfor %}
-        {% endif %}
-        {% endfor %}
-    </div>
-    
-
-
-
+    </div>    
     {% endfor %}
 
 

@@ -13,8 +13,10 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
 from .filters import EventFilter, CityFilter
 from .forms import DayEventForm 
+from django.core.exceptions import ValidationError 
 # from django.db.models import Q
 # import django_filters 
+
 
 def Home(request): 
     tags = Tag.objects.all()
@@ -131,17 +133,26 @@ class ScheduleDelete(DeleteView):
 #         return HttpResponseRedirect('/')
 
 def DayEventCreate(request, id):
-    print(id)
     schedule = get_object_or_404(Schedule, id=id)
+    schedule_instance = schedule
+    max_days = schedule.numdays
+    schedulefilter = Schedule.objects.filter(id = id)
     eventfilter = Event.objects.filter(city=schedule.city)
     if request.method == 'POST': 
         form = DayEventForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/schedule/'+str(id))
     else: 
         form = DayEventForm(initial={'schedule':id})
+        form.fields['schedule'].queryset = schedulefilter
         form.fields['event'].queryset = eventfilter
     return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule})
 
+@method_decorator(login_required, name='dispatch')
+class DayEventDelete(DeleteView): 
+    model = DayEvent
+    template_name = "dayevent_delete_confirm.html"
+    def get_success_url(self):
+        return reverse('schedule_detail', kwargs={'id':self.object.schedule_id}) 
 
