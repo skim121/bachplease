@@ -29,7 +29,6 @@ Bach Please | {{header}}
     <h3>List </h3>
     {% for event in events %}
     <a href="{% url 'event_detail' event.pk %}">
-        <p>{{event.name}}</p>
         <p>{{event.description|safe}}</p>
         <p>{{event.neighborhood}}</p>
     <hr>
