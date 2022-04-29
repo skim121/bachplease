@@ -15,6 +15,7 @@ social-auth-app-django = "*"
 django-dotenv = "*"
 python-dotenv = "*"
 django-filter = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 
