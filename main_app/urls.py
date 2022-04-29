@@ -13,6 +13,6 @@ urlpatterns = [
     path('schedule/<int:id>/', views.ScheduleDetail, name="schedule_detail"),
     path('schedule/create/', views.ScheduleCreate.as_view(), name="schedule_create"),
     path('schedule/<int:pk>/delete/', views.ScheduleDelete.as_view(), name="schedule_delete"),
-    path('dayevent/create/<schedule_id>', views.DayEventCreate, name="day_event_create"),
+    path('dayevent/create/<int:id>', views.DayEventCreate, name="day_event_create"),
     path('search/', views.FilterView, name="filter_view")
 ]

@@ -66,7 +66,7 @@ class MiamiList(TemplateView):
         return context
 
 
-def EventDetail(request,id): 
+def EventDetail(request, id): 
     event = get_object_or_404(Event, id=id)
     events = Event.objects.filter(user=request.user.id)
     is_fav = False
@@ -94,6 +94,7 @@ def schedule(request, id):
 
 def ScheduleDetail(request,id): 
     schedule = get_object_or_404(Schedule, id=id)
+    print(schedule.id)
     # range = schedule.numdays
     looptimes = range(1, schedule.numdays+1)
     events = Event.objects.filter(user=request.user, city=schedule.city)
@@ -129,8 +130,9 @@ class ScheduleDelete(DeleteView):
 #         print(request.GET)
 #         return HttpResponseRedirect('/')
 
-def DayEventCreate(request, schedule_id):
-    schedule = get_object_or_404(Schedule, id=schedule_id)
+def DayEventCreate(request, id):
+    print(id)
+    schedule = get_object_or_404(Schedule, id=id)
     eventfilter = Event.objects.filter(city=schedule.city)
     if request.method == 'POST': 
         form = DayEventForm(request.POST)
@@ -138,8 +140,8 @@ def DayEventCreate(request, schedule_id):
             form.save()
             return HttpResponseRedirect('/')
     else: 
-        form = DayEventForm(initial={'schedule':schedule_id})
+        form = DayEventForm(initial={'schedule':id})
         form.fields['event'].queryset = eventfilter
-    return reverse(request, 'day_event_create.html', {'form': form})
+    return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule})
 
 

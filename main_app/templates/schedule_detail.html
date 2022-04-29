@@ -21,9 +21,13 @@ Bach Please
         <p> Day {{i}} </p> 
         {% for d in dayevents %}
         {% if d.day == i %}
-        <a href = "{% url 'event_detail' d.event.pk %}" id="dayeventatag">
-            <p id="dayeventptag">{{d.event_set}}</p>
+        {% for e in d.event.all %}
+       <p> {{ e.id }} </p>
+       
+        <a href = "{% url 'event_detail' e.id %}" id="dayeventatag">
+            <p id="dayeventptag">{{e.name}}</p>
         </a>
+        {% endfor %}
         {% endif %}
         {% endfor %}
     </div>
