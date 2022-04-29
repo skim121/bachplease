@@ -29,7 +29,7 @@ Bach Please | {{header}}
 
     <h3>List </h3>
     {% for event in events %}
-    <img src = "https://res.cloudinary.com/skim121/image/upload/c_fill,g_face,h_1000,w_1000/{{event.image}}" alt="{{event.name}} image">
+    <img src = "https://res.cloudinary.com/skim121/image/upload/c_fill,g_face,h_300,w_300/{{event.image}}" alt="{{event.name}} image">
     <a href="{% url 'event_detail' event.pk %}">
         <p>{{event.description|safe}}</p>
         <p>{{event.neighborhood}}</p>
