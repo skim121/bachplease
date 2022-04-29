@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bach Please
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Are you sure you want to delete this event {{dayevent.name}}?</h1>
+	
+<form method="post">
+      {% csrf_token %} 
+      <div>
+        <a href="{% url 'schedule_detail' dayevent.schedule.id %}">Cancel</a>
+        <input type="submit" value="Confirm" />
+      </div>
+</form>
+
+
+{% endblock %}
