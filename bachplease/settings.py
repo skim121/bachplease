@@ -41,13 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django.contrib.sites',
     'main_app',
     'bootstrap5',
     'ckeditor',
     'social_django',
-    'django_filters'
+    'django_filters',
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -129,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -140,7 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/auth/login/google-oauth2/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-SITE_ID = 1
+SITE_ID = 1 #this number refers to the site id when logged into admin/sites
 
 
 ### Google OAUTH2 
@@ -152,3 +155,13 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY'))
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'))
+
+#Image Upload using Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'skim121',
+    'API_KEY': str(os.getenv('API_KEY')),
+    'API_SECRET': str(os.getenv('API_SECRET')),
+}
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
