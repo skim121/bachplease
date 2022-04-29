@@ -12,7 +12,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
 from .filters import EventFilter, CityFilter
-from .forms import DayEventForm, ScheduleForm 
+from .forms import DayEventForm, ScheduleForm, ScheduleUpdateForm 
 # from django.core.exceptions import ValidationError 
 # from django.db.models import Q
 # import django_filters 
@@ -128,6 +128,7 @@ class ScheduleDelete(DeleteView):
     def get_success_url(self):
         return reverse('profile', kwargs={'id': self.object.user.id}) 
 
+
 # class DayEventCreate(CreateView): 
 #     model = DayEvent
 #     form_class = DayEventForm
@@ -136,6 +137,18 @@ class ScheduleDelete(DeleteView):
 #     def get(self,request):
 #         print(request.GET)
 #         return HttpResponseRedirect('/')
+
+@method_decorator(login_required, name='dispatch')
+class ScheduleUpdate(UpdateView): 
+    model = Schedule 
+    form_class = ScheduleUpdateForm
+    template_name="schedule_update.html"
+    def form_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/schedule/'+str(self.object.id))
+
 
 @login_required
 def DayEventCreate(request, id):

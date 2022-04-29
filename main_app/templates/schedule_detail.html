@@ -21,10 +21,10 @@ Bach Please
         <p> Day {{i}} </p> 
         {% for d in dayevents %}
             {% if d.day == i %}
+            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
             <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
                 <p id="dayeventptag">{{d.event}}</p>
             </a>
-            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
             {% endif %}
         {% endfor %}
     </div>    
@@ -46,7 +46,7 @@ Bach Please
 
 
 
-
+<a href="{% url 'schedule_update' schedule.pk %}"> Edit </a>
 <a href="{% url 'schedule_delete' schedule.pk %}"> Delete </a>
 
 {% endblock %}
