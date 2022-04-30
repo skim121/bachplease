@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load cloudinary %}
-{% load easy_maps_tags %}
 
 {% block google %}
 <script src="https://maps.google.com/maps/api/js?key={{googleapi}}&sensor=false" type="text/javascript"></script>
@@ -40,7 +39,7 @@ Bach Please | {{header}}
     </a>
     {% endfor %}  
 
-    
+
     <h2>Map</h2>
 
     <div id="map" style="width: 500px; height: 400px;">
