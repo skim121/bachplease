@@ -24,6 +24,8 @@ whitenoise = "*"
 django-easy-maps = "*"
 folium = "*"
 jsonpickle = "*"
+django-crispy-forms = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 
