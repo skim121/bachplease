@@ -19,8 +19,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ### For deployment only
-# DATABASE_URL = os.environ['DATABASE_URL']
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # If the host name starts with 'live', DJANGO_HOST = "production"
 if socket.gethostname().startswith('live'):
@@ -56,9 +56,9 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 ### For deployment only
-# ALLOWED_HOSTS = [
-#     'bachplease.herokuapp.com'
-# ]
+ALLOWED_HOSTS = [
+    'bachplease.herokuapp.com'
+]
 
 
 # Application definition
@@ -129,7 +129,7 @@ DATABASES = {
 }
 
 ### For deployment only
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -185,7 +185,7 @@ LOGOUT_REDIRECT_URL = '/'
 SITE_ID = 1 #this number refers to the site id when logged into admin/sites
 
 
-### Google OAUTH2 
+# Google OAUTH2 
 # SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
