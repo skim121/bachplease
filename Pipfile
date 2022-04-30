@@ -21,6 +21,9 @@ django-heroku = "*"
 django-cors-headers = "*"
 dj-database-url = "*"
 whitenoise = "*"
+django-easy-maps = "*"
+folium = "*"
+jsonpickle = "*"
 
 [dev-packages]
 

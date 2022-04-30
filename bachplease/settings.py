@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    'easy_maps',
 
 ]
 
@@ -211,3 +212,6 @@ CKEDITOR_CONFIGS = {
         'toolbarCanCollapse': False,
     },
 }
+
+EASY_MAPS_GOOGLE_KEY = str(os.getenv('EASY_MAPS_GOOGLE_KEY'))
+EASY_MAPS_CENTER = (-41.3, 32)

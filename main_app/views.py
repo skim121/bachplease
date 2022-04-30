@@ -13,6 +13,10 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
 from .filters import EventFilter, CityFilter
 from .forms import DayEventForm, ScheduleForm, ScheduleUpdateForm 
+import folium
+import os
+import jsonpickle
+import json
 # from django.core.exceptions import ValidationError 
 # from django.db.models import Q
 # import django_filters 
@@ -35,7 +39,8 @@ def FilterView(request):
     events = Event.objects.filter(tag__in=tagname, city=header)
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
-    return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events, 'city_filter': city_filter})
+    googleapi = os.environ.get('EASY_MAPS_GOOGLE_KEY')
+    return render(request, 'citylist.html', {'header': cityname, 'tags': tagname, 'events':events, 'city_filter': city_filter, 'googleapi': googleapi})
 
 # Pre-made search filter to Austin 
 def AustinList(request): 
@@ -43,7 +48,8 @@ def AustinList(request):
     header = ["Austin"]
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
-    return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
+    googleapi = os.environ.get('EASY_MAPS_GOOGLE_KEY')
+    return render(request, 'citylist.html', {'city_filter': city_filter, 'events': events, 'header': header, 'googleapi': googleapi})
 
 
 # Pre-made search filter to Nashville
@@ -52,7 +58,8 @@ def NashvilleList(request):
     header = ["Nashville"]
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
-    return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
+    googleapi = os.environ.get('EASY_MAPS_GOOGLE_KEY')
+    return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header, 'googleapi': googleapi})
 
 # Pre-made search filter to Miami
 def MiamiList(request): 
@@ -60,7 +67,8 @@ def MiamiList(request):
     header = ["Miami"]
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
-    return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header})
+    googleapi = os.environ.get('EASY_MAPS_GOOGLE_KEY')
+    return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header, 'googleapi': googleapi})
 
 ### EVENTS
 def EventDetail(request, id): 
