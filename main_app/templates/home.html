@@ -11,7 +11,7 @@ Bach Please
 {% block content %}
 
 <div>
-      <div class="background-image"  style="background-image:url('./static/images/bphome.png'); width:100%; height:500px; background-size:cover; background-repeat:no-repeat; ; box-shadow: 0px 5px 12px #a1a0a0"> 
+      <div class="background-image"  style="background-image:url('./static/images/bphome.png'); width:100%; height:500px; background-size:cover; background-repeat:no-repeat; box-shadow: 0px 5px 12px #a1a0a0"> 
             <header class="d-flex flex-wrap align-items-center justify-content-around justify-content-md-between px-5 py-3 mb-4">
                   <div id="biglogo">
                         <a href="/" class="d-flex align-items-center col mb-md-0 text-dark text-decoration-none">
@@ -47,8 +47,12 @@ Bach Please
             </header>
             
            <div style="text-align:center; padding-bottom:15%; padding-left:20%; padding-right:20%">
-            <h1 id="taglineh1"> We got your <span id="bach">BACH</span></h1> 
-            <h4 id="taglineh4"> Curate the perfect getaway for your special person</h4>
+            <div id="slider" class="slide-in">
+                <h1 id="taglineh1"> We got your <span id="bach">BACH</span></h1> 
+            </div>
+            <div id="slider2" class="slide-in2">  
+                <h4 id="taglineh4"> Curate the perfect getaway for your special person</h4>
+            </div>
             <form method="get" action="{% url 'filter_view' %}">
                  {% csrf_token %} 
     
@@ -76,32 +80,46 @@ Bach Please
 </br>
 
 <div class="row" id="squares">
-    <div class="col-lg-3 d-flex justify-content-center mb-4" id="homesq">
-        <a href="/austin">
-        <div style="background-image:url('./static/images/adopt.png'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0">
+    <div class="col-lg-3 d-flex align-items-center justify-content-around mb-3" id="homesq">
+        <h2 id="start">Explore popular cities</h2>
+    </div>
+    
+    <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
+        <a href="/austin" class="text-decoration-none">
+        <div style="background-image:url('./static/images/austin1.jpg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Austin</span></div>
         </div>
         </a>
     </div>
-    <div class="col-lg-3 d-flex justify-content-center mb-4" id="homesq">
-        <a href="/nashville">
-        <div style="background-image:url('./static/images/donate.png'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; ">
+    <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
+        <a href="/nashville" class="text-decoration-none">
+        <div style="background-image:url('./static/images/nashville1.jpg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Nashville</span></div>
         </div>
         </a>
     </div>
-    <div class="col-lg-3 d-flex justify-content-center mb-4" id="homesq">
-        <a href="/miami">
-        <div style="background-image:url('./static/images/travel.png'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; ">
+    <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
+        <a href="/miami" class="text-decoration-none">
+        <div style="background-image:url('./static/images/miami.jpg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Miami</span></div>
         </div>
         </a>
     </div>
 </div>
 
 
-<li><a href="/austin">Austin</a></li>
-<li><a href="/nashville">Nashville</a></li>
-<li><a href="/miami">Miami</a></li>
+
+<div id="contact">
+<h3>Contact US</h3>
+
+</br>
+</br>
+</br>
+</br>
 
 
+
+</div>
 
 {% endblock %}
 
