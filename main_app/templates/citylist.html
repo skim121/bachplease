@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load cloudinary %}
-
+{% load crispy_forms_tags %}
+{% load bootstrap_icons %}
 
 {% block google %}
 <script src="https://maps.google.com/maps/api/js?key={{googleapi2}}&sensor=false" type="text/javascript"></script>
@@ -17,91 +18,134 @@ Bach Please |
 
 {% block content %}
 </br>
-<h1> Start Planning </h1> 
+
+<div style="border: 2px solid black" class="justify-content-center px-4">
+<h1 class="text-center"> Start Planning </h1> 
 <form method="get" action="{% url 'filter_view' %}">
      {% csrf_token %} 
-     {{ city_filter.form }}
-      <button type="submit" class="btn btn-primary">Submit</button>
+     <!-- {{ city_filter.form|crispy }} -->
+    <div class="form-group row">
+        <div class="form-group col-md-3">
+                {{ city_filter.form.city|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ city_filter.form.budget|as_crispy_field  }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ city_filter.form.tag|as_crispy_field  }}
+        </div>
+    </div>
+    <div class="form-group-row justiify-content-center" id="twobuttons">
+        <button type="reset" class="btn btn-outline-primary">Reset</button>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+      
+    
 </form>
 </br>
+</div>
 
-
+<div class="mt-4 px-4">
 {% for head in header %}
-<h1>Events in {{head}}</h1>
+<h1 id="eventsin"> <span id="iconsearch">{% bs_icon 'search' size='0.7em' %}</span> &nbsp Events in {{head}}</h1>
 {% endfor %}
 
-    <h3>List </h3>
-    {% for event in events %}
-    <a href="{% url 'event_detail' event.pk %}">
-        <h3>{{event.name}}</h3>
-        <p>{{event.description|safe}}</p>
-        <p>{{event.neighborhood}}</p>
-        <p>{{event.lat}}</p>
-        <p>{{event.long}}</p>
-        <img src = "https://res.cloudinary.com/skim121/image/upload/c_fill,g_face,h_300,w_300/{{event.image}}" alt="{{event.name}} image">
-    <hr>
-    </a>
-    {% endfor %}  
+</div >
 
-
-    <h2>Map</h2>
-
-    <div id="map" style="width: 500px; height: 400px;">
+<div class="d-flex flex-row">
+    
+    <div class="col-md-6 card-group flex-column p-4" id="eventdiv">
+        <h5 class="px-3"> {{events.count}} event result(s): </h5>
+        {% for event in events %}
+            <div class="card p-3">
+                <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none">
+                <div class="card-horizontal">
+                    <div class="card-image">
+                        <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/c_fill,g_face,h_180,w_300/{{event.image}}" style="border-radius: 0.5rem" alt="Card image {{event.name}}">
+                    </div>
+                    <div class="card-body-side p-3 flex-row">
+                        <div>
+                            <h5 class="card-title">{{event.name}}</h5>
+                        </div>
+                        <div>
+                            <p class="card-text">{{event.description|safe}}</p>
+                        </div>
+                        <div class="horizon">
+                            <p class="card-text flex-col">{{event.neighborhood}}</p>
+                            <p class="card-text flex-col">{{event.budget}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span id="iconarrow">{% bs_icon 'arrow-right-circle' size='2.0em' %}</span>
+                    </div>
+                </div>
+                </a>  
+            </div>
+            <hr>
+        {% endfor %}  
     </div>
 
-    <script type="text/javascript">
-
-        let locations = [
-        {% for event in events %}
-            ['{{event.name}}',{{event.lat}},{{event.long}}],
-        {% endfor%}
-        ]
-
-        let cityheader = [
-        {% for head in header %}
-            '{{head}}',
-        {% endfor%}
-        ]
-        
-        if(cityheader[0]=="Austin"){
-            baselat = 30.26;
-            baselong = -97.75; 
-        }
-
-        if(cityheader[0]=="Nashville"){
-            baselat = 36.17;
-            baselong = -86.78; 
-        }
-
-        if(cityheader[0]=="Miami"){
-            baselat = 25.80;
-            baselong = -80.18; 
-        }
-
-        let map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 11,
-            center: new google.maps.LatLng(baselat, baselong),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+    <div class="col-md-6 justify-content-center p-4" id="mapdiv">
+        <div id="map" style="width: 100%; height: 800px; border-radius: 0.5rem;">
+        </div>
+        <!-- Javascript Google Maps API -->
+        <script type="text/javascript">
     
-        let infowindow = new google.maps.InfoWindow();
+            let locations = [
+            {% for event in events %}
+                ['{{event.name}}',{{event.lat}},{{event.long}}],
+            {% endfor%}
+            ]
     
-        let marker, i;
-    
-        for (i = 0; i < locations.length; i++) {  
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-          });
-    
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infowindow.setContent(locations[i][0]);
-              infowindow.open(map, marker);
+            let cityheader = [
+            {% for head in header %}
+                '{{head}}',
+            {% endfor%}
+            ]
+            
+            if(cityheader[0]=="Austin"){
+                baselat = 30.26;
+                baselong = -97.75; 
             }
-          })(marker, i));
-        }
-    </script>
+    
+            if(cityheader[0]=="Nashville"){
+                baselat = 36.17;
+                baselong = -86.78; 
+            }
+    
+            if(cityheader[0]=="Miami"){
+                baselat = 25.80;
+                baselong = -80.18; 
+            }
+    
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: new google.maps.LatLng(baselat, baselong),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+        
+            let infowindow = new google.maps.InfoWindow();
+        
+            let marker, i;
+        
+            for (i = 0; i < locations.length; i++) {  
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+              });
+        
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                  infowindow.setContent(locations[i][0]);
+                  infowindow.open(map, marker);
+                }
+              })(marker, i));
+            }
+        </script>
+    </div>
+
+</div>
+
 
 {% endblock %}
 
