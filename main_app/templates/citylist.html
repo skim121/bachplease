@@ -55,7 +55,7 @@ Bach Please |
 <div class="d-flex flex-row">
     
     <div class="col-md-6 card-group flex-column p-4" id="eventdiv">
-        <h5 class="px-3"> {{events.count}} event result(s): </h5>
+        <h5 class="px-3"> {{events.count}} result(s): </h5>
         {% for event in events %}
             <div class="card p-3">
                 <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none">
@@ -119,7 +119,7 @@ Bach Please |
             }
     
             let map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
+                zoom: 13,
                 center: new google.maps.LatLng(baselat, baselong),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
