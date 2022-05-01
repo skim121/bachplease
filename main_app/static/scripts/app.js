@@ -16,3 +16,4 @@ $toggle.addEventListener('click', function() {
 
     $slider2.setAttribute('class', isOpen ? 'slide-out' : 'slide-in2');
 });
+
