@@ -7,6 +7,7 @@
 }
 
 body{
+    font-family: 'Radio Canada', sans-serif !important; 
     /* background: var(--white) !important; */
     /* 
     font-family: 'DM Serif Display', serif !important;
@@ -50,6 +51,20 @@ body{
   background-color: var(--blue) !important;
   border: 2px solid  var(--blue) !important;
   color: var(--green) !important; 
+}
+
+#tagline{
+  color: var(--white) !important; 
+  font-size: 60px;
+  font-family: 'Montserrat', sans-serif !important; 
+}
+
+#taglineh4{
+  color: var(--beige) !important; 
+}
+
+#bach{
+  font-weight: bold;
 }
 
 #logo{
