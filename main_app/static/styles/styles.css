@@ -48,9 +48,9 @@ body{
 }
 
 .btn-outline-primary:hover{
-  background-color: var(--blue) !important;
-  border: 2px solid  var(--blue) !important;
-  color: var(--green) !important; 
+  background-color: var(--green) !important;
+  border: 2px solid  var(--green) !important;
+  color: var(--blue) !important; 
 }
 
 /* HOME PAGE */
@@ -87,9 +87,11 @@ body{
   margin-top: 5% !important;
 }
 
-.form-check-input{
-  /* background: gray !important;  */
+.form-check-input:checked{
+  background: var(--green) !important;
+  border: var(--green);
 }
+
 
 #twobuttons{
   text-align: center !important
