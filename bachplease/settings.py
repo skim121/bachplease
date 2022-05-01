@@ -203,6 +203,7 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = str(os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY'))
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'))
 
+
 #Image Upload using Cloudinary
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'skim121',

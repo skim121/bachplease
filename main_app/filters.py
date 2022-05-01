@@ -18,10 +18,6 @@ class EventFilter(django_filters.FilterSet):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Row(
-                Column('name'),
-                Column('type')
-            )
         )
         # self.fields['city'].empty_label = None
 

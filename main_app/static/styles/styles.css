@@ -53,7 +53,7 @@ body{
   color: var(--green) !important; 
 }
 
-#tagline{
+#taglineh1{
   color: var(--white) !important; 
   font-size: 60px;
   font-family: 'Montserrat', sans-serif !important; 
@@ -94,8 +94,12 @@ body{
 }
 
 #eventsin{
-  border-bottom: 3px solid var(--green);
+  border-bottom: 3px solid var(--green) !important;
   max-width: 450px;
+}
+
+#city{
+  color: var(--green) !important;
 }
 
 .card{

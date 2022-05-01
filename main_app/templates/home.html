@@ -1,7 +1,8 @@
 {% extends 'basehome.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load crispy_forms_field %}
+{% load bootstrap_icons %}
 
 {% block title %}
 Bach Please
@@ -46,20 +47,19 @@ Bach Please
             </header>
             
            <div style="text-align:center; padding-bottom:15%; padding-left:20%; padding-right:20%">
-            <h1 id="tagline"> We got your <span id="bach">BACH</span></h1> 
+            <h1 id="taglineh1"> We got your <span id="bach">BACH</span></h1> 
             <h4 id="taglineh4"> Curate the perfect getaway for your special person</h4>
             <form method="get" action="{% url 'filter_view' %}">
                  {% csrf_token %} 
-                 <!-- {{ event_filter.form|crispy }} -->
-
+    
                  <div class="form-group row">
-                  <div class="form-group col-md-3">
-                          {{ event_filter.form.city|as_crispy_field }}
+                    <div class="form-group col-md-3">
+                        {{ event_filter.form.city|as_crispy_field }}
+                    <div class="form-group col-md-2">
+                        {{ event_filter.form.tag|as_crispy_field  }}
+                    </div>
                   </div>
-                  <div class="form-group col-md-6">
-                      {{ event_filter.form.tag|as_crispy_field  }}
-                  </div>
-                  </div>
+
               <div class="form-group-row justiify-content-center" id="twobuttons">
                   <button type="reset" class="btn btn-outline-primary">Reset</button>
                   <button type="submit" class="btn btn-primary">Search</button>
@@ -74,6 +74,28 @@ Bach Please
 </div>
 
 </br>
+
+<div class="row" id="squares">
+    <div class="col-lg-3 d-flex justify-content-center mb-4" id="homesq">
+        <a href="/austin">
+        <div style="background-image:url('./static/images/adopt.png'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0">
+        </div>
+        </a>
+    </div>
+    <div class="col-lg-3 d-flex justify-content-center mb-4" id="homesq">
+        <a href="/nashville">
+        <div style="background-image:url('./static/images/donate.png'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; ">
+        </div>
+        </a>
+    </div>
+    <div class="col-lg-3 d-flex justify-content-center mb-4" id="homesq">
+        <a href="/miami">
+        <div style="background-image:url('./static/images/travel.png'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; ">
+        </div>
+        </a>
+    </div>
+</div>
+
 
 <li><a href="/austin">Austin</a></li>
 <li><a href="/nashville">Nashville</a></li>
