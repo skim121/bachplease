@@ -1,14 +1,136 @@
 :root{
-    --white: #FFFFFF;
+    --white: hsl(0, 0%, 100%);
+    --gray: #3e3d3d;
+    --beige: #F8F5F0;
+    --green: #173C39;
+    --blue: #EEF6F5;
 }
 
 body{
     /* background: var(--white) !important; */
+    /* 
+    font-family: 'DM Serif Display', serif !important;
+    font-family: 'DM Serif Text', serif !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Playfair Display', serif !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Prata', serif !important;
+    font-family: 'Radio Canada', sans-serif !important; 
+    */
+}
+
+.btn-primary{
+  background-color: var(--green) !important;
+  color: var(--blue) !important; 
+  border-radius: 1.5rem !important;
+  border: 2px solid var(--green) !important;
+  padding: 7px 25px !important;
+  font-size: 18px !important;
+  outline: none !important;
+}
+
+.btn-primary:hover{
+  background-color: var(--blue) !important;
+  border: 2px solid var(--blue) !important;
+  color: var(--green) !important; 
+
+}
+
+.btn-outline-primary{
+  background-color: var(--blue) !important;
+  color: var(--green) !important; 
+  border-radius: 1.5rem !important;
+  border: 2px solid var(--blue) !important;
+  padding: 7px 25px !important;
+  font-size: 18px !important;
+  outline: none !important;
+}
+
+.btn-outline-primary:hover{
+  background-color: var(--blue) !important;
+  border: 2px solid  var(--blue) !important;
+  color: var(--green) !important; 
+}
+
+#logo{
+  font-size: 28px !important;
+  font-family: 'DM Serif Display', serif !important;
+  font-style: italic !important;
+}
+
+@media only screen and (max-width: 700px){
+  #biglogo{display:none;}
+}
+
+@media only screen and (min-width: 700px){
+  #smalllogo{display:none;}
+}
+
+.form-check-input{
+  /* background: gray !important;  */
+}
+
+#twobuttons{
+  text-align: center !important
+}
+
+#iconsearch{
+  color: var(--green) !important;
+}
+
+#eventsin{
+  border-bottom: 3px solid var(--green);
+  max-width: 450px;
+}
+
+.card{
+  border:transparent !important;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.card-body-side{
+  min-width: 55% !important;
+}
+
+.card-horizontal:hover{
+  /* filter: brightness(110%);  */
+  /* transform: translate3D(0,-1px,0) scale(1.03); */
+}
+
+.card-title{
+  color: var(--gray) !important;
+  font-weight: bold !important;
+}
+
+.card-text{
+  color: var(--gray) !important;
+}
+
+.card-footer{
+  align-self: center !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+#iconarrow{
+  display:none;
+  background: transparent !important;
+  border: none !important;
+}
+
+.card:hover #iconarrow{
+  display:block !important;
+  color: var(--green) !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 #dayborder{
     border: 2px solid black !important;
-    width: 60%;
 }
 
 #dayeventatag{
@@ -19,44 +141,3 @@ body{
     background: lightblue !important;
 
 }
-
-/* CSS */
-/* .button-55 {
-  align-self: center;
-  background-color: #fff;
-  background-image: none;
-  background-position: 0 90%;
-  background-repeat: repeat no-repeat;
-  background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-  box-sizing: border-box;
-  color: #41403e;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Neucha, sans-serif;
-  font-size: 1rem;
-  line-height: 23px;
-  outline: none;
-  padding: .75rem;
-  text-decoration: none;
-  transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-55:hover {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
-}
-
-.button-55:focus {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-} */

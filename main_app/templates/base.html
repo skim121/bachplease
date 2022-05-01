@@ -7,6 +7,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,600;1,800&family=Prata&family=Radio+Canada:wght@300;400;500;600;700&display=swap');
+    </style>
+    <!-- Static folder -->
     <link rel="stylesheet" href="{% static 'styles/styles.css'%}"/>
     <script src="{% static 'scripts/app.js' %}" defer></script>
     <!-- Bootstrap CSS -->
@@ -21,18 +26,41 @@
 </head>
 
 <body class="body">
-    <header>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/admin">Admin</a></li>
+    <header class="d-flex flex-wrap align-items-center justify-content-around justify-content-md-between px-5 py-3 mb-4 border-bottom">
+        <div id="biglogo">
+            <a href="/" class="d-flex align-items-center col mb-md-0 text-dark text-decoration-none">
+                <h1 class="align-items-center mb-0" id="logo">Bach Please</h1>
+            </a>
+        </div>
+        <div id="smalllogo">
+            <a href="/" class="d-flex align-items-center col mb-md-0 text-dark text-decoration-none">
+                <h1 class="align-items-center mb-0" id="logo">BP</h1>
+            </a>
+        </div>
         
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'profile' user.id %}"> Profile </a></li>
-            {% else %}
-            <a href = "{% url 'social:begin' 'google-oauth2' %}"> Sign In with Google</a>
-            {% endif %}
-        </ul>
-    </header>
+        <div class="col-md-3 text-end dropdown">
+          {% if user.is_authenticated %}
+          <a href="#" class="dropdown-toggle text-decoration-none link-dark" id="dropdownuser" data-bs-toggle="dropdown" aria-expanded="false">
+         Welcome, {{ user.first_name}}
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownuser" style="">
+              <li><a class="dropdown-item" href="{% url 'profile' user.id %}">My Plans</a></li>
+              <li><a href="/admin" class="dropdown-item">Admin</a></li>
+              {% if request.user.superuser %}
+              <li><a href="/" class="dropdown-item">Add Events</a></li>
+              {% endif %}
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+            </ul>
+          {% else %}
+          <a href="{% url 'social:begin' 'google-oauth2' %}" class="text-decoration-none">
+          <button type="button" class="btn btn-primary">Sign In with Google</button>
+          </a>
+          {% endif %}
+        </div>
+      
+      </header>
+
 
     {% block content %}
     {% endblock %}

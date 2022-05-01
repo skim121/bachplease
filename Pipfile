@@ -26,6 +26,7 @@ folium = "*"
 jsonpickle = "*"
 django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
+django-bootstrap-icons = "*"
 
 [dev-packages]
 

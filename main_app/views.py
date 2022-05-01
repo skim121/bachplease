@@ -17,9 +17,11 @@ import folium
 import os
 import jsonpickle
 import json
+
 # from django.core.exceptions import ValidationError 
 # from django.db.models import Q
 # import django_filters 
+
 
 
 def Home(request): 
@@ -59,6 +61,7 @@ def NashvilleList(request):
     city_filter = CityFilter(request.GET, queryset = events)
     events = city_filter.qs
     googleapi = os.environ.get('EASY_MAPS_GOOGLE_KEY')
+    print(city_filter.filters['city'])
     return render(request, 'citylist.html', {'city_filter': city_filter, "events": events, "header": header, 'googleapi': googleapi})
 
 # Pre-made search filter to Miami

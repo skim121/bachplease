@@ -80,11 +80,14 @@ INSTALLED_APPS = [
     'cloudinary',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_bootstrap_icons',
+    
 
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -219,3 +222,4 @@ CKEDITOR_CONFIGS = {
 
 EASY_MAPS_GOOGLE_KEY = str(os.getenv('EASY_MAPS_GOOGLE_KEY'))
 EASY_MAPS_CENTER = (-41.3, 32)
+
