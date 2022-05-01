@@ -76,7 +76,7 @@ Bach Please
                                 
                                     
                                         <div class="form-check">
-                                            <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input">
+                                            <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input" checked>
                                             <label for="id_tag_{{ forloop.counter0 }}" class="form-check-label" style="color:var(--green)"> {{ choice }} </label>
                                         </div>
                                     </div>
@@ -84,7 +84,7 @@ Bach Please
                             
                                     {% else %}
                                     <div class="form-check">
-                                        <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input">
+                                        <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input" checked>
                                         <label for="id_tag_{{ forloop.counter0 }}" class="form-check-label" style="color:var(--green)"> {{ choice }} </label>
                                     </div>
 
