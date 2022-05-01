@@ -16,10 +16,12 @@ class EventFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.filters['city'].field.widget.attrs.update({'class': 'form-select'})
+        self.filters['tag'].field.widget.attrs.update({'class': 'form-check form-check-inline'})
         self.helper = FormHelper()
         self.helper.layout = Layout(
         )
-        # self.fields['city'].empty_label = None
+        
 
 
 class CityFilter(django_filters.FilterSet): 
@@ -39,6 +41,7 @@ class CityFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.filters['city'].field.widget.attrs.update({'class': 'form-select'})
         self.helper = FormHelper()
         self.helper.form_id = 'search-form'
         self.helper.form_class = 'search-filter-form mb-4'

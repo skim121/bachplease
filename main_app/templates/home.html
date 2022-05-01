@@ -11,7 +11,7 @@ Bach Please
 {% block content %}
 
 <div>
-      <div class="background-image"  style="background-image:url('./static/images/bphome.png'); width:100%; height:500px; background-size:cover; background-repeat:no-repeat; box-shadow: 0px 5px 12px #a1a0a0"> 
+      <div class="background-image"  style="background-image:url('./static/images/bphome2.png'); width:100%; height:500px; background-size:cover; background-repeat:no-repeat; box-shadow: 0px 5px 12px #a1a0a0"> 
             <header class="d-flex flex-wrap align-items-center justify-content-around justify-content-md-between px-5 py-3 mb-4">
                   <div id="biglogo">
                         <a href="/" class="d-flex align-items-center col mb-md-0 text-dark text-decoration-none">
@@ -45,7 +45,8 @@ Bach Please
                       {% endif %}
                     </div>
             </header>
-            
+        </br>
+
            <div style="text-align:center; padding-bottom:15%; padding-left:20%; padding-right:20%">
             <div id="slider" class="slide-in">
                 <h1 id="taglineh1"> We got your <span id="bach">BACH</span></h1> 
@@ -53,22 +54,57 @@ Bach Please
             <div id="slider2" class="slide-in2">  
                 <h4 id="taglineh4"> Curate the perfect getaway for your special person</h4>
             </div>
+            <div id="homeform">
             <form method="get" action="{% url 'filter_view' %}">
                  {% csrf_token %} 
     
-                 <div class="form-group row">
-                    <div class="form-group col-md-3">
+                 <div class="form-group row mx-0 mt-5 justify-content-center">
+                    <div class="form-group col-md-3" style="height:120px; background:white; border:2px solid white; border-radius: 25px 0 0 25px; padding: 2% 5%;">
                         {{ event_filter.form.city|as_crispy_field }}
-                    <div class="form-group col-md-2">
-                        {{ event_filter.form.tag|as_crispy_field  }}
                     </div>
+                  
+                    <div class="form-group col-md-5" style=" background:white; border:2px solid white; text-align: center; justify-content: center; align-items: center; align-self: center; height:120px; padding:1%;">
+                        <div class="form-group">
+                            <!-- <label class>Tag</label> -->
+                        
+                            <div>
+                                <div class="row pt-2">
+                                    <div class="col">
+                                {% for pk, choice in event_filter.form.tag.field.widget.choices %}
+                                    
+                                    {% if forloop.counter|divisibleby:3 %}
+                                
+                                    
+                                        <div class="form-check">
+                                            <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input">
+                                            <label for="id_tag_{{ forloop.counter0 }}" class="form-check-label" style="color:var(--green)"> {{ choice }} </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                            
+                                    {% else %}
+                                    <div class="form-check">
+                                        <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input">
+                                        <label for="id_tag_{{ forloop.counter0 }}" class="form-check-label" style="color:var(--green)"> {{ choice }} </label>
+                                    </div>
+
+                                    {% endif %}
+                        
+                                {% endfor %}
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2" style="background:white; border:2px solid white; border-radius: 0 25px 25px 0; height:120px; padding:3%;" id="twobuttons">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+
                   </div>
 
-              <div class="form-group-row justiify-content-center" id="twobuttons">
-                  <button type="reset" class="btn btn-outline-primary">Reset</button>
-                  <button type="submit" class="btn btn-primary">Search</button>
-              </div>
+              
             </form>
+        </div>
            </div> 
             
 
@@ -86,7 +122,7 @@ Bach Please
     
     <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
         <a href="/austin" class="text-decoration-none">
-        <div style="background-image:url('./static/images/austin1.jpg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+        <div style="background-image:url('./static/images/austin2.jpeg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
             <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Austin</span></div>
         </div>
         </a>

@@ -83,6 +83,10 @@ body{
   #smalllogo{display:none;}
 }
 
+#homeform{
+  margin-top: 5% !important;
+}
+
 .form-check-input{
   /* background: gray !important;  */
 }
