@@ -53,7 +53,17 @@ body{
   color: var(--blue) !important; 
 }
 
+#footer{
+  text-align: center !important;
+  font-size: 12px !important;
+}
+
 /* HOME PAGE */
+
+#welcome2, #dropdownuser2{
+  color: var(--white) !important;
+}
+
 #taglineh1{
   color: var(--white) !important; 
   font-size: 60px;
@@ -63,6 +73,7 @@ body{
 #taglineh4{
   color: var(--beige) !important; 
   font-family: 'Montserrat', sans-serif !important;
+  font-style: italic !important;
 }
 
 #bach{
@@ -97,7 +108,10 @@ body{
  /* text-align:center !important; */
 }
 
-
+#citybackground{
+  margin-top: 6% !important;
+  margin-bottom: 12% !important;
+}
 
 #city{
   color: var(--green) !important;
@@ -132,13 +146,47 @@ body{
   font-family: 'Montserrat', sans-serif !important; 
 }
 
+#h3quote{
+width:60%;
+margin-left: 20%; 
+font-family: 'Montserrat', sans-serif !important; 
+}
+
+#quote{
+  font-size: 64px !important;
+  font-family: 'DM Serif Display', serif !important;
+}
+
 #contact{
   background: var(--beige) !important;
   padding: 3%;
   margin-top: 4%;
 }
 
+.carousel-item{
+  height: 400px !important;
+  text-align: center !important;
+  margin-bottom: 50px;
+  align-items: center !important;
+}
+
+
+
 /* EVENTS PAGE */
+/* #eventdiv{
+  width: 50%;
+  height: 1000px;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  direction: ttb; 
+} */
+
+/* #map{
+  position:fixed;
+  right: 20px;
+  height: 1000px !important;
+
+} */
 
 #iconsearch{
   color: var(--green) !important;
@@ -288,8 +336,8 @@ body{
 
 @media only screen and (max-width: 800px){
   #biglogo{display:none;}
-  #start{text-align: center !important;}
-  #homesq{text-align:center !important;}
+  #start{text-align: center !important; padding-left: 0% !important;}
+  #homesqtitle{justify-content: center;}
 }
 
 @media only screen and (max-width: 1200px){
