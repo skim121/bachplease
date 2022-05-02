@@ -28,9 +28,7 @@ Bach Please
     <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Add to favorites </button></a> 
         {% endif %}
     {% else %}
-    <a href="/login"><button class="btn btn-outline-primary"> Watch Me </button></a>
+    <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="btn btn-outline-primary"> Log In to Add </button></a>
     {% endif %}
 
-
-  
 {% endblock %}

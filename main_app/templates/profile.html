@@ -12,11 +12,47 @@ Bach Please
 
 <a href="{% url 'schedule_create' %}">Add New Schedule</a>
 
-{% for schedule in schedules %}
-    <a href="{% url 'schedule_detail' schedule.pk %}">
-        <p>{{schedule.name}}</p>
+<h3> Currently planning: </h3>
+<div class="row">
+
+
+    {% for schedule in future %}
+    <div class="col-3 m-3 p-3 dflex" style="border: 2px solid gray;">
+        <a href="{% url 'schedule_detail' schedule.pk %}" class="text-decoration-none" style="color:var(--gray);">
+            <div class="row">
+                <div class="col-4 justify-content-center text-align-center">
+                    
+                    {% if schedule.city == "Austin" %}
+                        <img src="{% static 'images/austin2.jpeg' %}" style="width:100px; height:100px; border-radius:8px;">
+                    {% else %}
+                        <img src="{% static 'images/miami.jpg' %}" style="width:100px; height:100px; border-radius:8px;">
+                    {% endif %}
+                </div>
+                <div class="col-8">
+                    <h5>{{schedule.name}}</h5>
+                    <p>{{schedule.city}}</p>
+                    <p>{{schedule.date_in}} - {{schedule.date_out}} </p>
+                </div>
+            </div>
+        </a>
+    </div>
+       
+    {% endfor %}  
+
+</div>
+
+
+<h3> Past plans</h3>
+{% for schedule in past %}
+<div class="col-2" style="border: 2px solid gray;">
+    <a href="{% url 'schedule_detail' schedule.pk %}" class="text-decoration-none" style="color:var(--gray);">
+        <h5>{{schedule.name}}</h5>
+        <p>{{schedule.city}}</p>
+        <p>{{schedule.date_in}} - {{schedule.date_out}} </p>
     </a>
+</div>
 {% endfor %}  
+
 
 
 
