@@ -245,7 +245,28 @@ font-size: 24px !important;
 
 #dayborder{
     border: 2px solid black !important;
+    width:50% !important;
+    margin-left:8%;
+    padding: 2%;
 }
+
+#daybordertop{
+  border: 2px solid black !important;
+  width:50% !important;
+  margin-left:8%;
+  border-radius: 25px 25px 0 0 ; 
+  padding: 2%;
+
+}
+
+#dayborderbot{
+  border: 2px solid black !important;
+  width:50% !important;
+  margin-left:8%;
+  border-radius: 0 0  25px 25px; 
+  padding: 2%;
+}
+
 
 #dayeventatag{
     text-decoration: none !important;
@@ -256,8 +277,14 @@ font-size: 24px !important;
 
 }
 
+#schedhead{
+  margin-left: 8% !important;
+}
 
-
+#day{
+  font-weight: bold !important;
+  font-size: 24px !important;
+}
 
 
 
@@ -348,4 +375,8 @@ font-size: 24px !important;
 
 @media only screen and (min-width: 800px){
   #smalllogo{display:none;}
+}
+
+#numdays{
+  font-size: 18px !important;  
 }

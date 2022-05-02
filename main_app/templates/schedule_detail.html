@@ -8,17 +8,23 @@ Bach Please
 
 {% block content %}
 
-    <h1>{{schedule.name}}</h1>
-    <p>{{schedule.date_in}}</p>
-    <p>{{schedule.date_out}}</p>
-    <p>{{schedule.numdays}}</p>
-    <p>{{schedule.city}}</p>
+  <div id="schedhead">
+    <h1>Plan: {{schedule.name}}</h1>
+    <h4> In: {{schedule.city}}</h4>
+    <h4> Dates: {{schedule.date_in}} - {{schedule.date_out}} <span class="text-muted"id="numdays"> ({{schedule.numdays}} days)</span></h4>
+</br>
+<a href="{% url 'schedule_update' schedule.pk %}" class="text-decoration-none"> <button class="btn btn-outline-primary">Edit</button> </a>
+<a href="{% url 'schedule_delete' schedule.pk %}" class="text-decoration-none"> <button class="btn btn-primary">Delete </button> </a>
+</div>
+</br>
+</br>
 
-    
+
     {% for i in looptimes %}
-    <div id="dayborder">
+    {% if forloop.first %}
+    <div id="daybordertop">
         <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
-        <p> Day {{i}} </p> 
+        <p id="day"> Day {{i}} </p> 
         {% for d in dayevents %}
             {% if d.day == i %}
             <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
@@ -28,14 +34,40 @@ Bach Please
             {% endif %}
         {% endfor %}
     </div>    
+
+    {% elif forloop.last %}
+    <div id="dayborderbot">
+        <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
+        <p id="day"> Day {{i}} </p> 
+        {% for d in dayevents %}
+            {% if d.day == i %}
+            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
+            <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                <p id="dayeventptag">{{d.event}}</p>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>    
+
+    {% else %}
+
+    <div id="dayborder">
+        <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
+        <p id="day"> Day {{i}} </p> 
+        {% for d in dayevents %}
+            {% if d.day == i %}
+            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
+            <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                <p id="dayeventptag">{{d.event}}</p>
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>    
+
+    {% endif %}
     {% endfor %}
 
-
-
-
-
-
-
+<h4> Favorite Events from {{schedule.city}} </h4>
 {% for event in events %}
     <a href="{% url 'event_detail' event.pk %}">
         <p>{{event.name}}</p>
@@ -46,7 +78,6 @@ Bach Please
 
 
 
-<a href="{% url 'schedule_update' schedule.pk %}"> Edit </a>
-<a href="{% url 'schedule_delete' schedule.pk %}"> Delete </a>
+
 
 {% endblock %}

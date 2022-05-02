@@ -98,6 +98,7 @@ def profile(request, id):
     schedules = Schedule.objects.filter(user=request.user)
     past = Schedule.objects.filter(user=request.user, date_in__lt=today)
     future = Schedule.objects.filter(user=request.user, date_in__gte=today)
+    
     return render(request, 'profile.html', {'user': user, 'events': events, 'schedules': schedules, 'past': past, 'future': future, id: request.user.id})
 
 # Add to favorites funcion
