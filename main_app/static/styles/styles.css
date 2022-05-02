@@ -32,7 +32,7 @@ body{
 
 .btn-primary:hover{
   background-color: var(--blue) !important;
-  border: 2px solid var(--blue) !important;
+  border: 2px solid var(--green) !important;
   color: var(--green) !important; 
 
 }
@@ -150,23 +150,23 @@ body{
 width:60%;
 margin-left: 20%; 
 font-family: 'Montserrat', sans-serif !important; 
+font-size: 24px !important;
 }
 
 #quote{
-  font-size: 64px !important;
+  font-size: 50px !important;
   font-family: 'DM Serif Display', serif !important;
 }
 
 #contact{
   background: var(--beige) !important;
   padding: 3%;
-  margin-top: 4%;
 }
 
 .carousel-item{
-  height: 400px !important;
+  height: 350px !important;
   text-align: center !important;
-  margin-bottom: 50px;
+  /* margin-bottom: 30px; */
   align-items: center !important;
 }
 

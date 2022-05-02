@@ -17,6 +17,7 @@ import folium
 import os
 import jsonpickle
 import json
+import datetime
 
 # from django.core.exceptions import ValidationError 
 # from django.db.models import Q
@@ -93,8 +94,11 @@ def logout_view(request):
 def profile(request, id): 
     user = User.objects.get(id=id)
     events = Event.objects.filter(user=request.user)
+    today = datetime.datetime.now() 
     schedules = Schedule.objects.filter(user=request.user)
-    return render(request, 'profile.html', {'user': user, 'events': events, 'schedules': schedules, id: request.user.id})
+    past = Schedule.objects.filter(user=request.user, date_in__lt=today)
+    future = Schedule.objects.filter(user=request.user, date_in__gte=today)
+    return render(request, 'profile.html', {'user': user, 'events': events, 'schedules': schedules, 'past': past, 'future': future, id: request.user.id})
 
 # Add to favorites funcion
 @login_required

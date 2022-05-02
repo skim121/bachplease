@@ -36,10 +36,8 @@ Bach Please |
                     <div class="row pt-2">
                         <div class="col">
                     {% for pk, choice in city_filter.form.tag.field.widget.choices %}
-                        
+                     
                         {% if forloop.counter|divisibleby:3 %}
-                    
-                        
                             <div class="form-check">
                                 <input id="id_tag_{{ forloop.counter0 }}" name="tag" type="checkbox" value="{{pk}}" class="form-check-input" checked autocomplete="off">
                                 <label for="id_tag_{{ forloop.counter0 }}" class="form-check-label" style="color:var(--green); float:left;"> {{ choice }} </label>

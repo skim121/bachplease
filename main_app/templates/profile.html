@@ -17,6 +17,18 @@ Bach Please
         <p>{{schedule.name}}</p>
     </a>
 {% endfor %}  
+<h1> Past</h1>
+{% for schedule in past %}
+    <a href="{% url 'schedule_detail' schedule.pk %}">
+        <p>{{schedule.name}}</p>
+    </a>
+{% endfor %}  
+<h1> Future </h1>
+{% for schedule in future %}
+    <a href="{% url 'schedule_detail' schedule.pk %}">
+        <p>{{schedule.name}}</p>
+    </a>
+{% endfor %}  
 
 
 
