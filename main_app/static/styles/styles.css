@@ -75,13 +75,6 @@ body{
   font-style: italic !important;
 }
 
-@media only screen and (max-width: 700px){
-  #biglogo{display:none;}
-}
-
-@media only screen and (min-width: 700px){
-  #smalllogo{display:none;}
-}
 
 #homeform{
   margin-top: 5% !important;
@@ -105,13 +98,14 @@ body{
 }
 
 
+
 #city{
   color: var(--green) !important;
 }
 
 #squares{
-  text-align: center !important;
-  justify-content: center !important;
+  /* text-align: center !important; */
+  /* justify-content: center !important; */
   margin-top: 3% !important;
   margin-bottom: 2% !important;
 }
@@ -127,14 +121,15 @@ body{
 #cityimages:hover{
   display:flex !important;
   color: white !important;
-  font-size: 60px !important;
-  font-weight: bold;
+  font-size: 48px !important;
+  /* font-weight: bold; */
   text-align: center !important;
   justify-content: center !important;
   align-items: center !important;
   background-color: black !important;
   opacity: 75%;
   z-index: 100;
+  font-family: 'Montserrat', sans-serif !important; 
 }
 
 #contact{
@@ -288,4 +283,21 @@ body{
 @-webkit-keyframes slide-out {
   0% { -webkit-transform: translateX(0%); }
   100% { -webkit-transform: translate(-100%); }
+}
+
+
+@media only screen and (max-width: 800px){
+  #biglogo{display:none;}
+  #start{text-align: center !important;}
+  #homesq{text-align:center !important;}
+}
+
+@media only screen and (max-width: 1200px){
+  #eventfilterform{
+    display:none;
+  }
+}
+
+@media only screen and (min-width: 800px){
+  #smalllogo{display:none;}
 }

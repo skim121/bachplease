@@ -55,7 +55,7 @@ Bach Please
                 <h4 id="taglineh4"> Curate the perfect getaway for your special person</h4>
             </div>
             <div id="homeform">
-            <form method="get" action="{% url 'filter_view' %}">
+            <form method="get" action="{% url 'filter_view' %}" id="eventfilterform">
                  {% csrf_token %} 
     
                  <div class="form-group row mx-0 mt-5 justify-content-center">
@@ -97,7 +97,7 @@ Bach Please
                         </div>
                     </div>
                     <div class="form-group col-md-2" style="background:white; border:2px solid white; border-radius: 0 25px 25px 0; height:120px; padding:3%;" id="twobuttons">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-outline-primary">Search</button>
                     </div>
 
                   </div>
@@ -116,32 +116,61 @@ Bach Please
 </br>
 
 <div class="row" id="squares">
-    <div class="col-lg-3 d-flex align-items-center justify-content-around mb-3" id="homesq">
-        <h2 id="start">Explore popular cities</h2>
+    <div class="col-lg-3 d-flex mb-5 align-items-center" id="homesq">
+        <h2 id="start" style="padding-left: 10%;">Explore popular cities</h2>
+    </div>
+    
+    <div class="col-lg-3 d-flex justify-content-around mb-5" id="homesq">
+        <a href="/austin" class="text-decoration-none">
+        <div style="background-image:url('./static/images/austin2.jpeg'); width:250px; height:250px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:250px; height:250px;border-radius:0.7rem;"><span id="citytext">Austin</span></div>
+        </div>
+        </a>
+    </div>
+    <div class="col-lg-3 d-flex justify-content-around mb-5" id="homesq">
+        <a href="/nashville" class="text-decoration-none">
+        <div style="background-image:url('./static/images/nashville1.jpg'); width:250px; height:250px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:250px; height:250px;border-radius:0.7rem;"><span id="citytext">Nashville</span></div>
+        </div>
+        </a>
+    </div>
+    <div class="col-lg-3 d-flex justify-content-around mb-5" id="homesq">
+        <a href="/miami" class="text-decoration-none">
+        <div style="background-image:url('./static/images/miami.jpg'); width:250px; height:250px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:250px; height:250px;border-radius:0.7rem;"><span id="citytext">Miami</span></div>
+        </div>
+        </a>
+    </div>
+</div>
+
+<div class="row" id="squares">
+    <div class="col-lg-3 d-flex align-items-center mb-3" id="homesq">
+        <h2 id="start" style="padding-left: 10%;">Cities coming soon</h2>
     </div>
     
     <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
         <a href="/austin" class="text-decoration-none">
-        <div style="background-image:url('./static/images/austin2.jpeg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
-            <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Austin</span></div>
+        <div style="background-image:url('./static/images/austin2.jpeg'); width:250px; height:250px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:250px; height:250px;border-radius:0.7rem;"><span id="citytext">Austin</span></div>
         </div>
         </a>
     </div>
     <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
         <a href="/nashville" class="text-decoration-none">
-        <div style="background-image:url('./static/images/nashville1.jpg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
-            <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Nashville</span></div>
+        <div style="background-image:url('./static/images/nashville1.jpg'); width:250px; height:250px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:250px; height:250px;border-radius:0.7rem;"><span id="citytext">Nashville</span></div>
         </div>
         </a>
     </div>
     <div class="col-lg-3 d-flex justify-content-around mb-3" id="homesq">
         <a href="/miami" class="text-decoration-none">
-        <div style="background-image:url('./static/images/miami.jpg'); width:280px; height:280px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
-            <div id="cityimages" style="width:280px; height:280px;border-radius:0.7rem;"><span id="citytext">Miami</span></div>
+        <div style="background-image:url('./static/images/miami.jpg'); width:250px; height:250px; background-size:cover; background-repeat:no-repeat; margin:0; border-radius:0.5rem;">
+            <div id="cityimages" style="width:250px; height:250px;border-radius:0.7rem;"><span id="citytext">Miami</span></div>
         </div>
         </a>
     </div>
 </div>
+
 
 
 
