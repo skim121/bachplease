@@ -115,11 +115,9 @@ def fav_add(request, id):
 @login_required
 def ScheduleDetail(request,id): 
     schedule = get_object_or_404(Schedule, id=id)
-    print(schedule.id)
     looptimes = range(1, schedule.numdays+1)
     events = Event.objects.filter(user=request.user, city=schedule.city)
     dayevents = DayEvent.objects.filter(schedule=schedule.id)
-    print(dayevents)
     return render(request, 'schedule_detail.html', {'schedule': schedule, 'events': events, 'looptimes': looptimes, 'dayevents': dayevents})
 
 @method_decorator(login_required, name='dispatch')

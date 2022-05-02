@@ -4,7 +4,7 @@
     --beige: #F8F5F0;
     --green: #173C39;
     --blue: #EEF6F5;
-    --lightgray: rgb(147,147,147);
+    --lightgray: rgb(172, 172, 172);
 }
 
 body{
@@ -246,15 +246,15 @@ font-size: 24px !important;
 
 #dayborder{
   border: 1px solid var(--lightgray) !important;
-    width:30% !important;
-    margin-left:8%;
+    /* width:30% !important; */
+    /* margin-left:8%; */
     padding: 2%;
 }
 
 #daybordertop{
   border: 1px solid var(--lightgray)  !important;
-  width:30% !important;
-  margin-left:8%;
+  /* width:30% !important; */
+  /* margin-left:8%; */
   border-radius: 25px 25px 0 0 ; 
   padding: 2%;
 
@@ -262,8 +262,8 @@ font-size: 24px !important;
 
 #dayborderbot{
   border: 1px solid var(--lightgray) !important;
-  width:30% !important;
-  margin-left:8%;
+  /* width:30% !important; */
+  /* margin-left:8%; */
   border-radius: 0 0  25px 25px; 
   padding: 2%;
   margin-bottom: 10%;
@@ -281,7 +281,8 @@ font-size: 24px !important;
     background: var(--blue) !important;
     padding: 1%;
     border-radius: 8px;
-
+    width: 80% !important;
+    margin-left: 10% !important;
 }
 
 #schedhead{

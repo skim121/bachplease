@@ -19,58 +19,64 @@ Bach Please
 </br>
 </br>
 
-
-    {% for i in looptimes %}
-    {% if forloop.first %}
-    <div id="daybordertop">
-        <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a>  </p> 
-        {% for d in dayevents %}
-            {% if d.day == i %}
-            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
-            <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-                <p id="dayeventptag">{{d.event}}</p>
-            </a>
+    <div class="row row-md" style="margin-left: 8%;">
+        <div class="col col-md-5" id="daytable">
+            {% for i in looptimes %}
+            {% if forloop.first %}
+            <div id="daybordertop">
+                <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a>  </p> 
+                {% for d in dayevents %}
+                    {% if d.day == i %}
+                    <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
+                    <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                        <p id="dayeventptag">{{d.event}}</p>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>    
+        
+            {% elif forloop.last %}
+            <div id="dayborderbot">
+                <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
+                {% for d in dayevents %}
+                    {% if d.day == i %}
+                    <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
+                    <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                        <p id="dayeventptag">{{d.event}}</p>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>    
+        
+            {% else %}
+        
+            <div id="dayborder">
+               
+                <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
+                {% for d in dayevents %}
+                    {% if d.day == i %}
+                    <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
+                    <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                        <p id="dayeventptag">{{d.event}}</p>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>    
             {% endif %}
-        {% endfor %}
-    </div>    
+            {% endfor %}
+        </div>
+        <div class="col col-md-4" id="favevents" style="margin-left: 8%;">
+            <h4> Favorite Events from {{schedule.city}} </h4>
+            {% for event in events %}
+                <a href="{% url 'event_detail' event.pk %}">
+                    <p>{{event.name}}</p>
+                </a>
+            {% endfor %}  
+        </div>
+    </div>
 
-    {% elif forloop.last %}
-    <div id="dayborderbot">
-        <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
-        {% for d in dayevents %}
-            {% if d.day == i %}
-            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
-            <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-                <p id="dayeventptag">{{d.event}}</p>
-            </a>
-            {% endif %}
-        {% endfor %}
-    </div>    
 
-    {% else %}
 
-    <div id="dayborder">
-       
-        <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
-        {% for d in dayevents %}
-            {% if d.day == i %}
-            <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
-            <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-                <p id="dayeventptag">{{d.event}}</p>
-            </a>
-            {% endif %}
-        {% endfor %}
-    </div>    
-
-    {% endif %}
-    {% endfor %}
-
-<h4> Favorite Events from {{schedule.city}} </h4>
-{% for event in events %}
-    <a href="{% url 'event_detail' event.pk %}">
-        <p>{{event.name}}</p>
-    </a>
-{% endfor %}  
 
 
 
