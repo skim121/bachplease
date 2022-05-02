@@ -4,6 +4,7 @@
     --beige: #F8F5F0;
     --green: #173C39;
     --blue: #EEF6F5;
+    --lightgray: rgb(147,147,147);
 }
 
 body{
@@ -244,15 +245,15 @@ font-size: 24px !important;
 }
 
 #dayborder{
-    border: 2px solid black !important;
-    width:50% !important;
+  border: 1px solid var(--lightgray) !important;
+    width:30% !important;
     margin-left:8%;
     padding: 2%;
 }
 
 #daybordertop{
-  border: 2px solid black !important;
-  width:50% !important;
+  border: 1px solid var(--lightgray)  !important;
+  width:30% !important;
   margin-left:8%;
   border-radius: 25px 25px 0 0 ; 
   padding: 2%;
@@ -260,20 +261,26 @@ font-size: 24px !important;
 }
 
 #dayborderbot{
-  border: 2px solid black !important;
-  width:50% !important;
+  border: 1px solid var(--lightgray) !important;
+  width:30% !important;
   margin-left:8%;
   border-radius: 0 0  25px 25px; 
   padding: 2%;
+  margin-bottom: 10%;
 }
 
 
 #dayeventatag{
     text-decoration: none !important;
+    color: black;
+    font-size: 20px;
+    text-align: center;
 }
 
 #dayeventptag{
-    background: lightblue !important;
+    background: var(--blue) !important;
+    padding: 1%;
+    border-radius: 8px;
 
 }
 
@@ -284,6 +291,8 @@ font-size: 24px !important;
 #day{
   font-weight: bold !important;
   font-size: 24px !important;
+  text-align: center;
+  color:var(--green) !important;
 }
 
 

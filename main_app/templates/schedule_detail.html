@@ -23,8 +23,7 @@ Bach Please
     {% for i in looptimes %}
     {% if forloop.first %}
     <div id="daybordertop">
-        <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
-        <p id="day"> Day {{i}} </p> 
+        <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a>  </p> 
         {% for d in dayevents %}
             {% if d.day == i %}
             <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
@@ -37,8 +36,7 @@ Bach Please
 
     {% elif forloop.last %}
     <div id="dayborderbot">
-        <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
-        <p id="day"> Day {{i}} </p> 
+        <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
         {% for d in dayevents %}
             {% if d.day == i %}
             <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
@@ -52,8 +50,8 @@ Bach Please
     {% else %}
 
     <div id="dayborder">
-        <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none float-right">+</a>
-        <p id="day"> Day {{i}} </p> 
+       
+        <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
         {% for d in dayevents %}
             {% if d.day == i %}
             <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
