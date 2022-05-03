@@ -8,36 +8,54 @@ Bach Please
 
 
 {% block content %}
-<div style="width:60%; margin-left: 20%; border:2px solid gray; justify-items: center; align-items: center; align-self: center; align-content: center;">
-    <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/c_crop,w_1000/{{event.image}}" style="border-radius: 8px; object-fit: cover; align-self: center;" alt="Card image {{event.name}}" >
+<div style="width:60%; margin-left: 20%; justify-items: center; align-items: center; align-self: center; align-content: center;">
+    <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/c_crop,w_1100,h_400/{{event.image}}" style="border-radius: 8px; object-fit: cover; align-self: center;" alt="Card image {{event.name}}" >
     <!-- <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/ar_2.5,c_crop,w_1100/{{event.image}}" style="border-radius: 8px; object-fit: cover; align-self: center;" alt="Card image {{event.name}}" > -->
 </div>
 
     
-<div class="container dflex justify-content-center" style="margin-left:20%;">
-    
+<div class="container dflex justify-content-center" style="margin-left:20%; width:60%;">
+    </br>
     <h1>{{event.name}}</h1>
-    <p> {{event.budget}}</p>
-    <p> {{event.capacity}}</p>
-    <p> {{event.city}}</p>
-    <p> {{event.neighborhood}}</p>
-    <p> {{event.website}}</p>
-    {% for tag in event.tag.all %}
-    <p> {{tag.name}}</p>
-    {% endfor %}
+   
+    <h4 style="color:var(--medgray); font-weight:lighter">{{event.budget}} | {{event.city}} | {{event.neighborhood}}</h4>
+    </br>
+    {% if request.user.is_authenticated %}
+        {% if is_fav %}
+        <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Remove from favorites </button></a>  
+        <a href="{{event.website}}"><button class="btn btn-primary"> Visit Website </button></a>  
+        {% else %}
+    <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Add to favorites </button></a> 
+    <a href="{{event.website}}"><button class="btn btn-primary"> Visit Website </button></a>  
+        {% endif %}
+    {% else %}
+    <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="btn btn-outline-primary"> Log In to Add </button></a>
+    <a href="{{event.website}}"><button class="btn btn-primary"> Visit Website </button></a>  
+    {% endif %}
+
+   <hr>
+    <h5> Suggested capacity </h5>
+    <p>{{event.capacity}}</p>
+      
+    </br>
+    <h5>Description</h5>
     {{event.description|safe}}
+    </br>
+    <div style="color:var(--green)">
+        {% for tag in event.tag.all %}
+        #{{tag.name}}
+       {% endfor %}
+    </div>
+    <hr>
+    <div class="text-align-center">
+        <a href="#" onClick="history.go(-1)" class="text-decoration-none" style="color:var(--gray)">{% bs_icon 'arrow-bar-left' %} Back to search</a>
+    </div>
+    
+
 </div>
 
     
     
-    {% if request.user.is_authenticated %}
-        {% if is_fav %}
-        <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Remove from favorites </button></a>  
-        {% else %}
-    <a href="{% url 'fav_add' event.id %}"><button class="btn btn-outline-primary"> Add to favorites </button></a> 
-        {% endif %}
-    {% else %}
-    <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="btn btn-outline-primary"> Log In to Add </button></a>
-    {% endif %}
+    
 
 {% endblock %}
