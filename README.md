@@ -1,6 +1,6 @@
 # Bach Please
 
-Bachelor/Bachelorette party planner's best friend - curate the best weekend plan for the best bride and groom 
+Bachelor/Bachelorette party planner's best friend - curate the best weekend plan for the your soon-to-be bride and groom 
 
 
 ## Table of Contents
@@ -18,7 +18,7 @@ Bachelor/Bachelorette party planner's best friend - curate the best weekend plan
 
 
 ## Get Started
-See deployed site here: [Heroku Link]()
+See deployed site here: [Heroku Link](http://bachplease.herokuapp.com/)
 
 ## Brainstorming
 
@@ -43,18 +43,28 @@ See deployed site here: [Heroku Link]()
 ![Wireframe](bachpleasewireframe.jpg)
 
 
-## Technologies Used:
+## Technologies Used / Dependencies:
 - Django (Python)
 - PostgreSQL
 - Bootstrap5 / Crispy Forms
 - Cloudinary
 - CKEditor
+- Javascript / JQuery
+- HTMX 
+- Django Social (Google OAuth2)
+- Google Maps API
 
 ## Highlights:
-- 
+- Filter function and rendering 
+- Google maps API with place tags 
 
 ## Unsolved Problems:
-- 
+- OAuth enhancement: Grabbing avatar, adding confirm screen 
+- HTMX response after modal close
+- Django form error handling
 
 ## Future Enhancements:
-- 
+- User reviews and comments
+- Adding multiple images
+- Drag and drop feature
+

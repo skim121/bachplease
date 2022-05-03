@@ -27,7 +27,7 @@ Bach Please
         <div class="col col-md-5" id="daytable">
             {% for i in looptimes %}
             {% if forloop.first %}
-            <div id="daybordertop">
+            <div id="daybordertop" style="">
                 <p id="day"> Day {{i}} </p> 
                 <div id="hxbtn">
                     <button hx-get="{% url 'day_event_create' schedule.id %}" hx-target="#dialog" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'plus' %}Add</button>
