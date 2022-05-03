@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap_icons %}
 
 
 <!DOCTYPE html>
@@ -36,10 +37,18 @@
 
     <div class="footerdiv">
         <div id="contact">
-            <h3>Contact Us</h3>
-            
+            <h3 class="align-items-center mb-0" style="color:var(--green);" id="logo2">Bach Please</h3>
+            <div>
+                {% bs_icon 'facebook' %}
+                {% bs_icon 'instagram' %}
+                {% bs_icon 'twitter' %}
+            </div>
+           
         </div>        
-        <footer class="border-top" id="footer">&copy;2022 All Rights Reserved </footer>
+
+
+
+        <footer class="border-top" id="footer">&copy;2022 Bach Please | All Rights Reserved </footer>
     </div>
 
 <script type="text/javascript" >
