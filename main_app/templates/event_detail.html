@@ -9,12 +9,12 @@ Bach Please
 
 {% block content %}
 <div style="width:60%; margin-left: 20%; border:2px solid gray; justify-items: center; align-items: center; align-self: center; align-content: center;">
-    <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/c_scale,h_400/{{event.image}}" style="border-radius: 8px; object-fit: cover; align-self: center;" alt="Card image {{event.name}}" >
+    <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/c_crop,w_1000/{{event.image}}" style="border-radius: 8px; object-fit: cover; align-self: center;" alt="Card image {{event.name}}" >
     <!-- <img class="card-img-side" src = "https://res.cloudinary.com/skim121/image/upload/ar_2.5,c_crop,w_1100/{{event.image}}" style="border-radius: 8px; object-fit: cover; align-self: center;" alt="Card image {{event.name}}" > -->
 </div>
 
     
-<div class="container dflex justify-content-center">
+<div class="container dflex justify-content-center" style="margin-left:20%;">
     
     <h1>{{event.name}}</h1>
     <p> {{event.budget}}</p>
