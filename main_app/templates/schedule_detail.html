@@ -28,41 +28,83 @@ Bach Please
             {% for i in looptimes %}
             {% if forloop.first %}
             <div id="daybordertop">
-                <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a>  </p> 
+                <p id="day"> Day {{i}} </p> 
+                <div id="hxbtn">
+                    <button hx-get="{% url 'day_event_create' schedule.id %}" hx-target="#dialog" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'plus' %}Add</button>
+                </div>
+                </br>
                 {% for d in dayevents %}
                     {% if d.day == i %}
-                    <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
-                    <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-                        <p id="dayeventptag">{{d.event}}</p>
-                    </a>
+                    <div  class="row align-self-center justify-content-center">
+                    <div class="col-10 align-items-center align-self-center w-80">
+                        <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                            <p id="dayeventptag">{{d.event}} </p>
+                        </a>
+                    </div>
+                   <div class="col-1 align-items-center align-self-center">
+                    <form method="POST" action="{% url 'dayevent_delete' d.pk %}">
+                        {% csrf_token %}<button type="submit" value="DELETE" style="color:var(--gray);" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'trash' size='1.2rem' %}</button>
+                    </form>
+                   
+           
+                   </div>
+                </div>
                     {% endif %}
                 {% endfor %}
             </div>    
         
             {% elif forloop.last %}
             <div id="dayborderbot">
-                <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
+                <p id="day"> Day {{i}}  </p> 
+                <div id="hxbtn">
+                    <button hx-get="{% url 'day_event_create' schedule.id %}" hx-target="#dialog" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'plus' %}Add</button>
+                </div>
+
+                </br>
                 {% for d in dayevents %}
                     {% if d.day == i %}
-                    <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
-                    <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-                        <p id="dayeventptag">{{d.event}}</p>
-                    </a>
+                    <div  class="row align-self-center justify-content-center">
+                    <div class="col-10 align-items-center align-self-center w-80">
+                        <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                            <p id="dayeventptag">{{d.event}} </p>
+                        </a>
+                    </div>
+                   <div class="col-1 align-items-center align-self-center">
+                    <form method="POST" action="{% url 'dayevent_delete' d.pk %}">
+                        {% csrf_token %}<button type="submit" value="DELETE" style="color:var(--gray);" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'trash' size='1.2rem' %}</button>
+                    </form>
+                   
+           
+                   </div>
+                </div>
                     {% endif %}
                 {% endfor %}
             </div>    
-        
             {% else %}
         
             <div id="dayborder">
-               
-                <p id="day"> Day {{i}} <a href="{% url 'day_event_create' schedule.id %}" class="text-decoration-none">+</a> </p> 
+                <p id="day"> Day {{i}}  </p> 
+                <div id="hxbtn">
+                    <button hx-get="{% url 'day_event_create' schedule.id %}" hx-target="#dialog" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'plus' %}Add</button>
+                </div>
+
+                </br>
                 {% for d in dayevents %}
                     {% if d.day == i %}
-                    <a href="{% url 'dayevent_delete' d.pk %}"> Delete </a>
-                    <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
-                        <p id="dayeventptag">{{d.event}}</p>
-                    </a>
+                    <div  class="row align-self-center justify-content-center">
+                    <div class="col-10 align-items-center align-self-center w-80">
+                        <a href = "{% url 'event_detail' d.event.id %}" id="dayeventatag">
+                            <p id="dayeventptag">{{d.event}} </p>
+                        </a>
+                    </div>
+                   <div class="col-1 align-items-center align-self-center">
+                    <form method="POST" action="{% url 'dayevent_delete' d.pk %}">
+                        {% csrf_token %}<button type="submit" value="DELETE" style="color:var(--gray);" class="btn btn-light text-align-center" id="lightbutton">{% bs_icon 'trash' size='1.2rem' %}</button>
+                    </form>
+                   
+           
+                   </div>
+                </div>
                     {% endif %}
                 {% endfor %}
             </div>    
@@ -71,7 +113,7 @@ Bach Please
         </div>
 
         <div class="col col-md-4" id="favevents" style="margin-left: 8%;">
-            <h3> Favorite Events from {{schedule.city}} </h3>
+            <h2 style="font-weight: bold;"> Favorite Events from {{schedule.city}} </h2>
             {% for event in events %}
             <div class="m-4">
                 <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none">
@@ -84,11 +126,9 @@ Bach Please
     </div>
 
 
-
-
-
-
-
+    <div id="modal" class="modal fade">
+        <div id="dialog" class="modal-dialog" hx-target="this"></div>
+    </div>
 
 
 

@@ -55,11 +55,21 @@ body{
   color: var(--blue) !important; 
 }
 
+.btn-primary{
+  border-radius: 1.5rem !important;
+  padding: 7px 25px !important;
+  font-size: 18px !important;
+}
+
+
 #footer{
   text-align: center !important;
   font-size: 12px !important;
 }
 
+.footerdiv{
+  margin-top: 8% !important;
+}
 /* HOME PAGE */
 
 #welcome2, #dropdownuser2{
@@ -253,6 +263,7 @@ font-size: 24px !important;
 
 #dayborder{
   border: 1px solid var(--lightgray) !important;
+  text-align: center !important;
     /* width:30% !important; */
     /* margin-left:8%; */
     padding: 2%;
@@ -286,10 +297,10 @@ font-size: 24px !important;
 
 #dayeventptag{
     background: var(--blue) !important;
-    padding: 1%;
+    /* padding: 1%; */
     border-radius: 8px;
-    width: 80% !important;
-    margin-left: 10% !important;
+    /* width: 80% !important; */
+    /* margin-left: 15% !important; */
 }
 
 #schedhead{
@@ -301,6 +312,7 @@ font-size: 24px !important;
   font-size: 24px !important;
   text-align: center;
   color:var(--green) !important;
+  margin-left: -8% !important;
 }
 
 #numdays{
@@ -399,5 +411,12 @@ font-size: 24px !important;
 
 @media only screen and (min-width: 800px){
   #smalllogo{display:none;}
+}
+
+#hxbtn{
+  text-align:center !important; 
+  justify-content: center !important; 
+  align-self:center !important;
+  margin-left: -8% !important;
 }
 

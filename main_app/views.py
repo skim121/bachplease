@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
 from .filters import EventFilter, CityFilter
 from .forms import DayEventForm, ScheduleForm, ScheduleUpdateForm 
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 import folium
 import os
 import jsonpickle
@@ -22,7 +24,6 @@ import datetime
 # from django.core.exceptions import ValidationError 
 # from django.db.models import Q
 # import django_filters 
-
 
 
 def Home(request): 
@@ -155,26 +156,49 @@ def DayEventCreate(request, id):
     schedule = get_object_or_404(Schedule, id=id)
     schedule_instance = schedule
     max_days = schedule.numdays
-    dayarray=[]
-    for i in range(1, max_days+1):
-        dayarray.append(i)
-    print(dayarray)
+    daycorrect=True
     schedulefilter = Schedule.objects.filter(id = id)
     eventfilter = Event.objects.filter(city=schedule.city)
     if request.method == 'POST': 
         form = DayEventForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
             if int(form.cleaned_data['day']) > max_days:
-                return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days })
+                daycorrect=False
+                return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days, 'daycorrect': daycorrect })
             else:
                 form.save()
-                return HttpResponseRedirect('/schedule/'+str(id))
+                return HttpResponse(status=204)
+               
     else: 
         form = DayEventForm(initial={'schedule':id})
         form.fields['schedule'].queryset = schedulefilter
         form.fields['event'].queryset = eventfilter
-    return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days })
+    return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days, 'daycorrect': daycorrect })
+
+# def DayEventCreate(request, id):
+#     schedule = get_object_or_404(Schedule, id=id)
+#     schedule_instance = schedule
+#     max_days = schedule.numdays
+#     dayarray=[]
+#     for i in range(1, max_days+1):
+#         dayarray.append(i)
+#     print(dayarray)
+#     schedulefilter = Schedule.objects.filter(id = id)
+#     eventfilter = Event.objects.filter(city=schedule.city)
+#     if request.method == 'POST': 
+#         form = DayEventForm(request.POST)
+#         if form.is_valid():
+#             print(form.cleaned_data)
+#             if int(form.cleaned_data['day']) > max_days:
+#                 return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days })
+#             else:
+#                 form.save()
+#                 return HttpResponseRedirect('/schedule/'+str(id))
+#     else: 
+#         form = DayEventForm(initial={'schedule':id})
+#         form.fields['schedule'].queryset = schedulefilter
+#         form.fields['event'].queryset = eventfilter
+#     return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days })
 
 @method_decorator(login_required, name='dispatch')
 class DayEventDelete(DeleteView): 
@@ -183,3 +207,8 @@ class DayEventDelete(DeleteView):
     def get_success_url(self):
         return reverse('schedule_detail', kwargs={'id':self.object.schedule_id}) 
 
+# @login_required
+# def DayEventDelete(request, pk):
+#     dayevent = get_object_or_404(DayEvent, pk=pk)
+#     dayevent.delete()
+#     return HttpResponse(status=204)

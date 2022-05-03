@@ -21,12 +21,7 @@ Bach Please
         <a href="{% url 'schedule_detail' schedule.pk %}" class="text-decoration-none" style="color:var(--gray);">
             <div class="row">
                 <div class="col-xl-3 p-0" style="width:100px;height:100px">
-                    
-                    {% if schedule.city == " Austin " %}
-                    <img src="{% static 'images/portland3.webp' %}" style="width:100px; height: 100px; border-radius:8px;object-fit: cover; padding:0; margin:0;">
-                    {% else %}
-                        <img src="{% static 'images/tart.png' %}" style="width:100px; height: 100px; border-radius:8px;object-fit: cover; padding:0; margin:0;">
-                    {% endif %}
+                    <img src="{% static 'images/tart.png' %}" style="width:100px; height: 100px; border-radius:8px;object-fit: cover; padding:0; margin:0;">
                 </div>
                 <div class="col-xl-8 pb-0" style="align-self:center; padding-left:3%;">
                     <h5 style="font-weight:bold;">{{schedule.name}}</h5>
@@ -47,12 +42,7 @@ Bach Please
         <a href="{% url 'schedule_detail' schedule.pk %}" class="text-decoration-none" style="color:var(--gray);">
             <div class="row">
                 <div class="col-xl-3 p-0" style="width:100px;height:100px">
-                    
-                    {% if schedule.city == " Austin " %}
-                    <img src="{% static 'images/portland3.webp' %}" style="width:100px; height: 100px; border-radius:8px;object-fit: cover; padding:0; margin:0;">
-                    {% else %}
-                        <img src="{% static 'images/miami.jpg' %}" style="width:100px; height: 100px; border-radius:8px;object-fit: cover; padding:0; margin:0;">
-                    {% endif %}
+                        <img src="{% static 'images/cham.png' %}" style="width:100px; height: 100px; border-radius:8px;object-fit: cover; padding:0; margin:0;">
                 </div>
                 <div class="col-xl-8 pb-0" style="align-self:center; padding-left:3%;">
                     <h5 style="font-weight:bold;">{{schedule.name}}</h5>
@@ -65,6 +55,7 @@ Bach Please
     {% endfor %}  
 </div>
 </div>
+
 
 
 

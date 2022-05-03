@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'basemodal.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% load crispy_forms_field %}
@@ -10,13 +10,33 @@ Bach Please
 
 {% block content %}
 
-<h1>Day Event Create</h1>
+<!-- <h1>Day Event Create</h1>
 
 <form method="post">
       {% csrf_token %} 
       {{form.as_p}}
       <input type="submit" value="Submit" />
 </form>
-<p> Day can't be greater than {{max_days}}!</p>
+-->
+
+<form hx-post="{{ request.path }}" class="modal-content">
+      {% csrf_token %}
+      <div class="modal-header">
+        <h5 class="modal-title">Add Event</h5>
+      </div>
+      <div class="modal-body">
+        {{ form|crispy}}
+      
+      {% if daycorrect %}
+      </br>
+      {% else %}
+      <p style="margin-left: 4%;"> Day can't be greater than {{max_days}}!</p> 
+      </div>
+      {% endif %}
+      <div class="modal-footer">
+            <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="submit" onClick="window.location.href=window.location.href">Save</button>
+      </div>
+</form>
 
 {% endblock %}

@@ -30,47 +30,8 @@
 </head>
 
 <body class="body">
-    <header class="d-flex flex-wrap align-items-center justify-content-around justify-content-md-between px-5 py-3 mb-4 border-bottom">
-        <div id="biglogo">
-            <a href="/" class="d-flex align-items-center col mb-md-0 text-dark text-decoration-none">
-                <h1 class="align-items-center mb-0" id="logo">Bach Please</h1>
-            </a>
-        </div>
-        <div id="smalllogo">
-            <a href="/" class="d-flex align-items-center col mb-md-0 text-dark text-decoration-none">
-                <h1 class="align-items-center mb-0" id="logo">BP</h1>
-            </a>
-        </div>
-        
-        <div class="col-md-3 text-end dropdown">
-          {% if user.is_authenticated %}
-          <a href="#" class="dropdown-toggle text-decoration-none link-dark" id="dropdownuser" data-bs-toggle="dropdown" aria-expanded="false">
-         Welcome, {{ user.first_name}}
-          </a>
-          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownuser" style="">
-              <li><a class="dropdown-item" href="{% url 'profile' user.id %}">My Plans</a></li>
-              {% if request.user.is_superuser %}
-              <li><a href="/admin" class="dropdown-item">Admin</a></li>
-              {% endif %}
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout">Sign out</a></li>
-            </ul>
-          {% else %}
-          <a href="{% url 'social:begin' 'google-oauth2' %}" class="text-decoration-none">
-          <button type="button" class="btn btn-primary">Sign In with Google</button>
-          </a>
-          {% endif %}
-        </div>
-      
-      </header>
-
-
     {% block content %}
     {% endblock %}
-    
-    <div class="footerdiv">   
-        <footer class="border-top" id="footer">&copy;2022 All Rights Reserved </footer>
-    </div>
 
 <!-- HTMX -->
 <!-- <script src="htmx.min.js" defer></script> -->
