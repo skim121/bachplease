@@ -8,15 +8,14 @@ Bach Please
 
 {% block content %}
 
-<h1>Are you sure you want to delete schedule {{schedule.name}}?</h1>
+<h1 style="text-align:center; margin-top: 20%;">Are you sure you want to delete schedule {{schedule.name}}?</h1>
 	
-<form method="post">
+<form method="post" style="margin-bottom: 20%;">
       {% csrf_token %} 
-      <div>
-        <a href="{% url 'schedule_detail' schedule.pk %}">Cancel</a>
-        <input type="submit" value="Confirm" />
+      <div id="twobuttons">
+        <a href="{% url 'schedule_detail' schedule.pk %}"> <button class="btn btn-outline-primary">Cancel </button></a>
+        <button class="btn btn-danger" type="submit"> Delete</button>
       </div>
 </form>
-
 
 {% endblock %}

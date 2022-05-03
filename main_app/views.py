@@ -206,9 +206,3 @@ class DayEventDelete(DeleteView):
     template_name = "dayevent_delete_confirm.html"
     def get_success_url(self):
         return reverse('schedule_detail', kwargs={'id':self.object.schedule_id}) 
-
-# @login_required
-# def DayEventDelete(request, pk):
-#     dayevent = get_object_or_404(DayEvent, pk=pk)
-#     dayevent.delete()
-#     return HttpResponse(status=204)
