@@ -49,9 +49,8 @@
           </a>
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownuser" style="">
               <li><a class="dropdown-item" href="{% url 'profile' user.id %}">My Plans</a></li>
+              {% if request.user.is_superuser %}
               <li><a href="/admin" class="dropdown-item">Admin</a></li>
-              {% if request.user.superuser %}
-              <li><a href="/" class="dropdown-item">Add Events</a></li>
               {% endif %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/logout">Sign out</a></li>

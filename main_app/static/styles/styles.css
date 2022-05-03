@@ -4,6 +4,7 @@
     --beige: #F8F5F0;
     --green: #173C39;
     --blue: #EEF6F5;
+    --medgray: rgb(125, 125, 125);
     --lightgray: rgb(172, 172, 172);
 }
 
@@ -82,11 +83,17 @@ body{
 }
 
 #logo{
+  color:var(--green) !important;
   font-size: 28px !important;
   font-family: 'DM Serif Display', serif !important;
   font-style: italic !important;
 }
 
+#logo2{
+  font-size: 28px !important;
+  font-family: 'DM Serif Display', serif !important;
+  font-style: italic !important;
+}
 
 #homeform{
   margin-top: 5% !important;
@@ -296,11 +303,17 @@ font-size: 24px !important;
   color:var(--green) !important;
 }
 
+#numdays{
+  font-size: 18px !important;  
+}
 
+#bookmark{
+  color:var(--gray) !important;
+}
 
-
-
-
+#bookmark:hover{
+  color:var(--medgray) !important;
+}
 
 /* Home Slide */
 
@@ -375,6 +388,7 @@ font-size: 24px !important;
   #biglogo{display:none;}
   #start{text-align: center !important; padding-left: 0% !important;}
   #homesqtitle{justify-content: center;}
+  #yourplans{text-align:center; justify-content: center !important; align-self:center !important;}
 }
 
 @media only screen and (max-width: 1200px){
@@ -387,6 +401,3 @@ font-size: 24px !important;
   #smalllogo{display:none;}
 }
 
-#numdays{
-  font-size: 18px !important;  
-}

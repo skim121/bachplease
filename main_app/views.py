@@ -98,8 +98,8 @@ def profile(request, id):
     schedules = Schedule.objects.filter(user=request.user)
     past = Schedule.objects.filter(user=request.user, date_in__lt=today)
     future = Schedule.objects.filter(user=request.user, date_in__gte=today)
-    
-    return render(request, 'profile.html', {'user': user, 'events': events, 'schedules': schedules, 'past': past, 'future': future, id: request.user.id})
+    austin = City.objects.filter(name="Austin")
+    return render(request, 'profile.html', {'user': user, 'events': events, 'schedules': schedules, 'past': past, 'future': future, 'austin': austin, id: request.user.id})
 
 # Add to favorites funcion
 @login_required
@@ -155,18 +155,26 @@ def DayEventCreate(request, id):
     schedule = get_object_or_404(Schedule, id=id)
     schedule_instance = schedule
     max_days = schedule.numdays
+    dayarray=[]
+    for i in range(1, max_days+1):
+        dayarray.append(i)
+    print(dayarray)
     schedulefilter = Schedule.objects.filter(id = id)
     eventfilter = Event.objects.filter(city=schedule.city)
     if request.method == 'POST': 
         form = DayEventForm(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/schedule/'+str(id))
+            print(form.cleaned_data)
+            if int(form.cleaned_data['day']) > max_days:
+                return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days })
+            else:
+                form.save()
+                return HttpResponseRedirect('/schedule/'+str(id))
     else: 
         form = DayEventForm(initial={'schedule':id})
         form.fields['schedule'].queryset = schedulefilter
         form.fields['event'].queryset = eventfilter
-    return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule})
+    return render(request, 'day_event_create.html', {'form': form, 'schedule': schedule, 'max_days':max_days })
 
 @method_decorator(login_required, name='dispatch')
 class DayEventDelete(DeleteView): 

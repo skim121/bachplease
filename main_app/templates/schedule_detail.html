@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap_icons %}
 
 {% block title %}
 Bach Please
@@ -9,7 +10,10 @@ Bach Please
 {% block content %}
 
   <div id="schedhead">
-    <h1>Plan: {{schedule.name}}</h1>
+    <a href="{% url 'profile' user.id %}" class="text-decoration-none" style="color:var(--gray)">{% bs_icon 'arrow-bar-left' %} Back</a>
+</br>
+</br>
+    <h1 style="color:var(--green)">{{schedule.name}}</h1>
     <h4> In: {{schedule.city}}</h4>
     <h4> Dates: {{schedule.date_in}} - {{schedule.date_out}} <span class="text-muted"id="numdays"> ({{schedule.numdays}} days)</span></h4>
 </br>
@@ -65,12 +69,16 @@ Bach Please
             {% endif %}
             {% endfor %}
         </div>
+
         <div class="col col-md-4" id="favevents" style="margin-left: 8%;">
-            <h4> Favorite Events from {{schedule.city}} </h4>
+            <h3> Favorite Events from {{schedule.city}} </h3>
             {% for event in events %}
-                <a href="{% url 'event_detail' event.pk %}">
-                    <p>{{event.name}}</p>
+            <div class="m-4">
+                <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none">
+                    <h4 id="bookmark"> {% bs_icon 'bookmark-star' %}{{event.name}}</h4>
                 </a>
+            </div>
+               
             {% endfor %}  
         </div>
     </div>

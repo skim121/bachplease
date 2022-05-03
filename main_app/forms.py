@@ -43,8 +43,12 @@ class DayEventForm(forms.ModelForm):
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            # if self.fields['days'] >= max_days:
-            #     raise ValidationError("Submit the right day")
+            # if self.fields['days'] >= self.fields['schedule'].numdays:
+            #     raise forms.ValidationError("Type the correct day")
 
+            if self.fields['day'] >= max_days:
+                raise forms.ValidationError("Submit the right day")
+            print(self.fields['day'])
+            print(max_days)
             self.helper.form_method = 'post'
             self.helper.add_input(Submit('submit', 'Submit'))
