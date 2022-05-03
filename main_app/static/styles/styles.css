@@ -420,3 +420,17 @@ font-size: 24px !important;
   margin-left: -8% !important;
 }
 
+#schedform{
+  position: relative !important;
+  width: 50% !important;
+  transform: translate(-50%, -50%); 
+  top: 50% !important;
+  left: 50% !important;
+  margin-left: 50%;
+  z-index: 100;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-group{
+  margin: 2% 0 !important;
+}

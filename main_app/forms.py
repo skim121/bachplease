@@ -14,6 +14,9 @@ class ScheduleForm(forms.ModelForm):
             'date_in': DateInput(),
             'date_out': DateInput(),
         }
+        labels = {
+            'numdays': 'Number of days staying (ex. Friday, Saturday, Sunday = 3 days)'
+        }
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.helper.form_method = 'post'
@@ -26,6 +29,9 @@ class ScheduleUpdateForm(forms.ModelForm):
         widgets = {
             'date_in': DateInput(),
             'date_out': DateInput(),
+        }
+        labels = {
+            'numdays': 'Number of days staying (ex. Friday, Saturday, Sunday = 3 days)'
         }
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

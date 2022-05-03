@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 Bach Please
 {% endblock %}
 
 
-{% block content %}
+{% block content %}	
+<div class="row">
+    <img src="{% static 'images/bphome.png' %}" style="width:100%; position:absolute; z-index: -1;">
+    <div class="justify-content-center align-self-center p-4" style="background: white; border-radius: 8px; width: 60%; margin-left:20%; margin-top:8%; margin-bottom: 3%;" id="schedform ">
+          <h1 style="text-align:center;padding:3%; text-transform: uppercase;">UPDATE PLAN for {{schedule.name}}</h1>
+          <form method="post" style="width:80%; margin-left:10%;" autocomplete="off">
+                {% csrf_token %} 
+                {{form|crispy}}
+                <div id="twobuttons" class="m-4">
+                      <button type="submit" onclick="history.back()" class="btn btn-outline-primary">Cancel</button>
+                      <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                </div>
+                
+          </form>
+    </div>
 
-<h1> Update schedule: {{schedule.name}} </h1>
-	
-<form method="post">
-    {% csrf_token %} 
-    {{form.as_p}}
-    <button class="btn btn-outline-primary" id="resetbtn" type = "reset">Reset</button>
-    <button class="btn btn-primary" id="addbtn" type = "submit">Submit</button>
-</form>
-
-
+</div>
+ 
 {% endblock %}

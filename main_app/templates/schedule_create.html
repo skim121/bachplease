@@ -8,20 +8,20 @@ Bach Please
 
 {% block content %}
 <div class="row">
-      <div class="col-2 background-image"  style="background-image:url('../static/images/chair.png'); width:20%; background-size:cover; background-repeat:no-repeat; "> 
-      </div>
-      <div class="col-8 justify-content-center align-self-center" style="border: 2px solid black; width: 60%;">
-            <h1 style="text-align:center;">Create a new schedule</h1>
-            <form method="post" style="width:100%; margin-left:0%;">
+      <img src="{% static 'images/bphome.png' %}" style="width:100%; position:absolute; z-index: -1;">
+      <div class="justify-content-center align-self-center p-4" style="background: white; border-radius: 8px; width: 60%; margin-left:20%; margin-top:5%; margin-bottom: 3%;" id="schedform ">
+            <h1 style="text-align:center;padding:3%;">CREATE A NEW PLAN</h1>
+            <form method="post" style="width:80%; margin-left:10%;" autocomplete="off">
                   {% csrf_token %} 
                   {{form|crispy}}
-                  <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                  <div id="twobuttons" class="m-4">
+                        <button type="submit" onclick="history.back()" class="btn btn-outline-primary">Cancel</button>
+                        <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                  </div>
+                  
             </form>
       </div>
-      <div class="col-2">
-            <div class=" col-2 background-image"  style="background-image:url('../static/images/chair.png'); width:20%; background-size:cover; background-repeat:no-repeat; "> 
-            </div>
-      </div>
+
 </div>
    
 
