@@ -82,7 +82,7 @@ Bach Please |
     <div class="col-md-6 card-group flex-column p-4" id="eventdiv">
         <h5 class="px-3"> {{events.count}} result(s): </h5>
         {% for event in events %}
-            <div class="d-flex card justify-content-center align-items-center">
+            <div class="d-flex card justify-content-center">
                 <a href="{% url 'event_detail' event.pk %}" class="text-decoration-none">
                 <div class="card-horizontal">
                     <div class="card-image">
