@@ -73,7 +73,7 @@ body{
   font-size: 12px !important;
 }
 
-.footerdiv{
+#footerdiv{
   margin-top: 8% !important;
 }
 /* HOME PAGE */
@@ -439,4 +439,10 @@ font-size: 24px !important;
 
 .form-group{
   margin: 2% 0 !important;
+}
+
+#email{
+  font-family: 'Montserrat', sans-serif !important; 
+  font-size: 12px;
+  padding-top: 3%;
 }

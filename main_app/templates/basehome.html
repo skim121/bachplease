@@ -35,19 +35,24 @@
     {% block content %}
     {% endblock %}
 
-    <div class="footerdiv">
-        <div id="contact">
-            <h3 class="align-items-center mb-0" style="color:var(--green);" id="logo2">Bach Please</h3>
-            <div>
-                {% bs_icon 'facebook' %}
-                {% bs_icon 'instagram' %}
-                {% bs_icon 'twitter' %}
+    <div id="footerdiv">
+        <div class="row" id="contact" >
+
+            <div class="d-flex col-md-2 flex-column justify-content-center text-align-center align-items-center">
+                <h3 class="align-items-center mb-0" style="color:var(--green);" id="logo2">Bach Please</h3>
+                <p id="email">bachplease1026@gmail.com</p>
             </div>
-           
+            <div class="col-md-8"></div>
+            <div class="d-flex col-md-2 flex-column justify-content-center text-align-center align-items-center" style="right: 20px;">
+                <h5>Contact Us</h5>
+                <div>
+                    {% bs_icon 'facebook' %} &nbsp
+                    {% bs_icon 'instagram' %} &nbsp
+                    {% bs_icon 'twitter' %}
+                </div>
+                
+            </div>
         </div>        
-
-
-
         <footer class="border-top" id="footer">&copy;2022 Bach Please | All Rights Reserved </footer>
     </div>
 
